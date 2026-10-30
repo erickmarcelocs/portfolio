@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Argila Ateliê</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: loja minimalista, vitrine em grade de peças desenhadas em CSS, carrinho em painel lateral */
+:root{
+  --bg:#E4EAE3; --fg:#1C2724; --muted:#5B6A64; --line:#C3CEC5; --surface:#F3F6F2;
+  --glaze:#2D4A7A; --glaze-fg:#FFFFFF; --warn:#9A3B2A;
+  --display:'Familjen Grotesk',system-ui,sans-serif; --body:'Work Sans',system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto}
+:focus-visible{outline:2px solid var(--glaze);outline-offset:3px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.logo{font-family:var(--display);font-weight:700;font-size:1.4rem;letter-spacing:-.01em}
+.actions{display:flex;gap:10px;align-items:center}
+.back{text-decoration:none;display:inline-block;background:none;border:1px solid var(--line);color:var(--muted);font:inherit;font-size:.85rem;padding:6px 12px;border-radius:999px;cursor:pointer}
+.back:hover{color:var(--fg);border-color:var(--muted)}
+.cartbtn{background:var(--glaze);color:var(--glaze-fg);border:0;font:inherit;font-weight:500;padding:9px 16px;border-radius:999px;cursor:pointer;display:flex;gap:8px;align-items:center}
+.cartbtn span{background:var(--glaze-fg);color:var(--glaze);border-radius:999px;min-width:22px;height:22px;display:inline-grid;place-items:center;font-size:.8rem;font-variant-numeric:tabular-nums}
+.intro{padding-block:56px 40px;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:end}
+.intro h1{font-family:var(--display);font-weight:500;font-size:clamp(2.4rem,6.5vw,4.6rem);line-height:1;letter-spacing:-.025em;margin:0;text-wrap:balance}
+.intro p{margin:0;color:var(--muted);max-width:36ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px;padding-bottom:64px}
+.card{display:flex;flex-direction:column;min-width:0}
+.art{aspect-ratio:1/1;max-width:100%;background:var(--surface);display:grid;place-items:center;border-radius:2px}
+.shape{background:var(--c);box-shadow:inset -10px -8px 0 rgba(0,0,0,.12), inset 6px 6px 0 rgba(255,255,255,.18)}
+.vaso{width:46%;height:62%;border-radius:38% 38% 18% 18% / 24% 24% 12% 12%}
+.tigela{width:68%;height:34%;border-radius:4% 4% 50% 50% / 6% 6% 90% 90%}
+.caneca{width:44%;height:46%;border-radius:6% 6% 16% 16%;position:relative}
+.caneca::after{content:"";position:absolute;right:-26%;top:20%;width:30%;height:44%;border:7px solid var(--c);border-left:0;border-radius:0 60% 60% 0}
+.prato{width:78%;height:16%;border-radius:50%}
+.info{display:flex;justify-content:space-between;gap:12px;padding-top:12px}
+.info h3{margin:0;font-family:var(--display);font-weight:500;font-size:1.1rem}
+.info small{display:block;color:var(--muted);font-size:.82rem}
+.price{font-variant-numeric:tabular-nums;font-weight:500;white-space:nowrap}
+.add{margin-top:10px;background:none;border:1px solid var(--fg);color:var(--fg);font:inherit;font-size:.9rem;padding:9px;border-radius:2px;cursor:pointer}
+.add:hover{background:var(--fg);color:var(--bg)}
+.shade{position:fixed;inset:0;background:rgba(20,28,25,.45);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:var(--surface);z-index:30;display:flex;flex-direction:column;
+  padding:max(20px,env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) 20px;box-shadow:-12px 0 40px rgba(0,0,0,.18)}
+.drawer h2{margin:0;font-family:var(--display);font-weight:500;font-size:1.5rem}
+.dhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.close{background:none;border:0;font:inherit;color:var(--muted);cursor:pointer;font-size:1rem}
+.lines{flex:1;overflow:auto;margin:0;padding:0;list-style:none}
+.line{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;padding-block:12px;border-bottom:1px solid var(--line)}
+.mini{width:44px;height:44px;border-radius:2px;background:var(--c)}
+.line b{font-weight:500;display:block}
+.qty{display:inline-flex;align-items:center;gap:8px;margin-top:2px;font-variant-numeric:tabular-nums}
+.qty button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:none;cursor:pointer;font:inherit;color:var(--fg)}
+.empty{color:var(--muted);padding-block:24px}
+.total{display:flex;justify-content:space-between;font-weight:500;padding-block:16px;font-variant-numeric:tabular-nums}
+.pay{background:var(--glaze);color:var(--glaze-fg);border:0;font:inherit;font-weight:500;padding:14px;border-radius:2px;cursor:pointer}
+.pay[disabled]{opacity:.45;cursor:not-allowed}
+.note{font-size:.82rem;color:var(--muted);margin:10px 0 0}
+footer{border-top:1px solid var(--line);padding-block:24px 40px;color:var(--muted);font-size:.86rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:720px){.intro{grid-template-columns:1fr;padding-block:32px 28px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="logo">Argila Ateliê</div>
+    <div class="actions">
+      <a class="back" id="back" href="../index.html">← Voltar ao portfólio</a>
+      <button class="cartbtn" id="open" type="button" aria-controls="drawer" aria-expanded="false">Sacola <span id="count">0</span></button>
+    </div>
+  </header>
+  <main>
+    <div class="intro">
+      <h1>Cerâmica feita à mão, queimada a 1.240 °C.</h1>
+      <p>Cada peça sai do torno com pequenas diferenças. Por isso nenhuma é igual à da foto, e todas são suas.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </main>
+  <footer><span>© 2026 Argila Ateliê</span><span>Loja de demonstração. Produtos e pagamento são fictícios.</span></footer>
+</div>
+
+<div class="shade" id="shade" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="Sacola de compras">
+  <div class="dhead"><h2>Sua sacola</h2><button class="close" id="close" type="button">Fechar</button></div>
+  <ul class="lines" id="lines"></ul>
+  <div class="total"><span>Total</span><span id="total">R$ 0,00</span></div>
+  <button class="pay" id="pay" type="button" disabled>Finalizar compra</button>
+  <p class="note" id="note">Frete grátis acima de R$ 300,00.</p>
+</aside>
+
+<script>
+const items=[
+  {id:1,n:"Vaso Duna",s:"Altura 24 cm",p:189,c:"#C9A27E",k:"vaso"},
+  {id:2,n:"Tigela Maré",s:"Diâmetro 16 cm",p:84,c:"#2D4A7A",k:"tigela"},
+  {id:3,n:"Caneca Brisa",s:"320 ml",p:68,c:"#7E9C8E",k:"caneca"},
+  {id:4,n:"Prato Raso Cinza",s:"Diâmetro 26 cm",p:96,c:"#8A9097",k:"prato"},
+  {id:5,n:"Vaso Restinga",s:"Altura 32 cm",p:240,c:"#4E5B3F",k:"vaso"},
+  {id:6,n:"Tigela Sal",s:"Diâmetro 20 cm",p:112,c:"#E8E2D4",k:"tigela"},
+  {id:7,n:"Caneca Barro",s:"280 ml",p:62,c:"#A8573A",k:"caneca"},
+  {id:8,n:"Prato Fundo Azul",s:"Diâmetro 22 cm",p:104,c:"#35608F",k:"prato"}
+];
+const cart=new Map();
+const fmt=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const $=id=>document.getElementById(id);
+$("grid").innerHTML=items.map(i=>`<article class="card"><div class="art"><div class="shape ${i.k}" style="--c:${i.c}"></div></div>
+<div class="info"><div><h3>${i.n}</h3><small>${i.s}</small></div><span class="price">${fmt(i.p)}</span></div>
+<button class="add" type="button" data-id="${i.id}">Adicionar à sacola</button></article>`).join("");
+function draw(){
+  let n=0,t=0;
+  const rows=[...cart.entries()].map(([id,q])=>{const i=items.find(x=>x.id===id);n+=q;t+=q*i.p;
+    return `<li class="line"><div class="mini" style="--c:${i.c}"></div><div><b>${i.n}</b><span class="qty"><button type="button" data-d="-1" data-id="${id}" aria-label="Diminuir">−</button>${q}<button type="button" data-d="1" data-id="${id}" aria-label="Aumentar">+</button></span></div><span class="price">${fmt(q*i.p)}</span></li>`});
+  $("lines").innerHTML=rows.length?rows.join(""):`<li class="empty">Sua sacola está vazia.</li>`;
+  $("count").textContent=n;$("total").textContent=fmt(t);$("pay").disabled=!n;
+  $("note").textContent=t>=300?"Você ganhou frete grátis.":`Faltam ${fmt(Math.max(0,300-t))} para o frete grátis.`;
+}
+function show(v){$("drawer").hidden=!v;$("shade").hidden=!v;$("open").setAttribute("aria-expanded",v);if(v)$("close").focus()}
+$("grid").addEventListener("click",e=>{const b=e.target.closest(".add");if(!b)return;const id=+b.dataset.id;cart.set(id,(cart.get(id)||0)+1);draw();show(true)});
+$("lines").addEventListener("click",e=>{const b=e.target.closest("[data-d]");if(!b)return;const id=+b.dataset.id,q=cart.get(id)+ +b.dataset.d;q<=0?cart.delete(id):cart.set(id,q);draw()});
+$("open").addEventListener("click",()=>show(true));$("close").addEventListener("click",()=>show(false));$("shade").addEventListener("click",()=>show(false));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")show(false)});
+$("pay").addEventListener("click",()=>{cart.clear();draw();$("note").textContent="Pedido de demonstração registrado. Nenhum pagamento foi feito."});
+draw();
+</script>
+<script>
+(function(){
+  var a=document.getElementById("back");
+  a.addEventListener("click",function(e){
+    try{
+      if(history.length>1&&document.referrer&&new URL(document.referrer).origin===location.origin){e.preventDefault();history.back()}
+    }catch(err){}
+  });
+})();
+</script>
+</body>
+</html>

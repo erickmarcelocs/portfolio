@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clínica Mar Odontologia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: site institucional claro, hero com chamada de agendamento, tratamentos em lista e agendador em três passos */
+:root{
+  --bg:#FFFFFF; --fg:#10242E; --muted:#51666F; --line:#D6E3E8; --surface:#EEF6F8;
+  --teal:#0B7285; --teal-dark:#085868; --teal-fg:#FFFFFF; --ok:#1B7A46; --err:#B3352B;
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1000px;margin:0 auto}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:18px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:1.25rem;letter-spacing:-.02em;color:var(--teal)}
+.logo small{display:block;font-weight:500;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.top nav{display:flex;gap:22px;font-size:.92rem;font-weight:500}
+.top nav a{text-decoration:none;color:var(--muted)}
+.top nav a:hover{color:var(--teal)}
+.back{text-decoration:none;display:inline-block;background:none;border:1px solid var(--line);color:var(--muted);font:inherit;font-size:.82rem;padding:6px 12px;border-radius:999px;cursor:pointer}
+.hero{background:var(--surface);border-radius:16px;padding:clamp(28px,6vw,64px);display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center;margin-block:8px 0}
+.hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;letter-spacing:-.03em;font-weight:800;margin:0 0 16px;text-wrap:balance}
+.hero p{color:var(--muted);margin:0 0 24px;max-width:44ch}
+.btn{display:inline-block;background:var(--teal);color:var(--teal-fg);font:inherit;font-weight:700;text-decoration:none;border:0;padding:14px 26px;border-radius:10px;cursor:pointer}
+.btn:hover{background:var(--teal-dark)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.stats{display:grid;gap:14px}
+.stat{background:var(--bg);border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.stat b{font-size:1.6rem;letter-spacing:-.02em;color:var(--teal);font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:.9rem;text-align:right}
+section{padding-block:64px 0}
+h2{font-size:clamp(1.6rem,4vw,2.2rem);letter-spacing:-.025em;font-weight:800;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 28px;max-width:56ch}
+.treats{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.treats li{display:grid;grid-template-columns:180px 1fr auto;gap:8px 24px;padding-block:18px;border-bottom:1px solid var(--line);align-items:baseline}
+.treats h3{margin:0;font-size:1.05rem}
+.treats p{margin:0;color:var(--muted);font-size:.95rem}
+.treats .t{font-size:.85rem;color:var(--teal);font-weight:700;white-space:nowrap}
+.sched{background:var(--surface);border-radius:16px;padding:clamp(20px,4vw,40px)}
+.step{margin-bottom:24px;min-width:0}
+.step h3{margin:0 0 10px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{background:var(--bg);border:1px solid var(--line);color:var(--fg);font:inherit;font-size:.92rem;padding:10px 16px;border-radius:10px;cursor:pointer;text-align:center}
+.opt:hover{border-color:var(--teal)}
+.opt[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--teal-fg)}
+.opt small{display:block;font-size:.72rem;opacity:.75;text-transform:uppercase;letter-spacing:.06em}
+.opt b{font-variant-numeric:tabular-nums}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:grid;gap:6px;font-size:.85rem;color:var(--muted);min-width:0}
+input{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;width:100%;min-width:0}
+.result{margin-top:16px;padding:14px 16px;border-radius:10px;background:var(--bg);border:1px solid var(--line)}
+.result.ok{border-color:var(--ok);color:var(--ok)}
+.result.err{border-color:var(--err);color:var(--err)}
+footer{margin-top:72px;border-top:1px solid var(--line);padding-block:26px 40px;color:var(--muted);font-size:.86rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr}
+  .treats li{grid-template-columns:1fr auto}
+  .treats p{grid-column:1 / -1;grid-row:2}
+  .fields{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="logo">Clínica Mar<small>Odontologia</small></div>
+    <nav><a href="#tratamentos">Tratamentos</a><a href="#agendar">Agendar</a></nav>
+    <a class="back" id="back" href="../index.html">← Voltar ao portfólio</a>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <h1>Cuidado com os dentes sem sala de espera lotada.</h1>
+        <p>Consultas com hora marcada, atendimento de segunda a sábado e orçamento entregue por escrito antes de qualquer procedimento.</p>
+        <a class="btn" href="#agendar">Agendar consulta</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>15 min</b><span>de tolerância no horário</span></div>
+        <div class="stat"><b>Seg a sáb</b><span>8h às 18h</span></div>
+        <div class="stat"><b>12x</b><span>no cartão, sem juros</span></div>
+      </div>
+    </div>
+
+    <section id="tratamentos">
+      <h2>Tratamentos</h2>
+      <p class="lead">Valores de referência para a primeira avaliação. O orçamento final depende do seu caso.</p>
+      <ul class="treats">
+        <li><h3>Avaliação e limpeza</h3><p>Exame clínico, profilaxia e orientação de higiene.</p><span class="t">60 min</span></li>
+        <li><h3>Clareamento</h3><p>Moldeira personalizada para uso em casa ou sessão no consultório.</p><span class="t">45 a 90 min</span></li>
+        <li><h3>Restauração</h3><p>Resina na cor do dente, com anestesia e acabamento polido.</p><span class="t">45 min</span></li>
+        <li><h3>Aparelho ortodôntico</h3><p>Metálico, estético ou alinhadores transparentes.</p><span class="t">30 min</span></li>
+        <li><h3>Urgência</h3><p>Dor, dente quebrado ou inchaço. Encaixamos no mesmo dia.</p><span class="t">Sem hora marcada</span></li>
+      </ul>
+    </section>
+
+    <section id="agendar">
+      <h2>Agende seu horário</h2>
+      <p class="lead">Escolha o tratamento, o dia e o horário. Confirmamos por mensagem.</p>
+      <form class="sched" id="form" novalidate>
+        <div class="step"><h3>1. Tratamento</h3><div class="opts" id="svc"></div></div>
+        <div class="step"><h3>2. Dia</h3><div class="opts" id="days"></div></div>
+        <div class="step"><h3>3. Horário</h3><div class="opts" id="slots"></div></div>
+        <div class="step"><h3>4. Seus dados</h3>
+          <div class="fields">
+            <label for="nome">Nome completo<input id="nome" autocomplete="name"></label>
+            <label for="tel">Telefone<input id="tel" type="tel" autocomplete="tel" placeholder="(85) 90000-0000"></label>
+          </div>
+        </div>
+        <button class="btn" type="submit">Confirmar agendamento</button>
+        <div class="result" id="res" hidden role="status"></div>
+      </form>
+    </section>
+  </main>
+  <footer><span>© 2026 Clínica Mar Odontologia</span><span>Site de demonstração. Clínica e dados são fictícios.</span></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const svcs=["Avaliação e limpeza","Clareamento","Restauração","Aparelho","Urgência"];
+const hours=["08:00","09:00","10:00","11:00","14:00","15:00","16:00","17:00"];
+const wk=["dom","seg","ter","qua","qui","sex","sáb"];
+const sel={s:svcs[0],d:null,h:null};
+const busy=new Set();
+function opt(html,pressed,attrs){return `<button type="button" class="opt" aria-pressed="${pressed}" ${attrs}>${html}</button>`}
+function days(){
+  const out=[];const t=new Date();
+  for(let i=1;out.length<7;i++){const d=new Date(t);d.setDate(t.getDate()+i);if(d.getDay()!==0)out.push(d)}
+  return out;
+}
+const list=days();sel.d=list[0];
+function key(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function taken(d,h){let n=0;for(const c of key(d)+h)n=(n*31+c.charCodeAt(0))%97;return n%4===0}
+function draw(){
+  $("svc").innerHTML=svcs.map(s=>opt(s,s===sel.s,`data-s="${s}"`)).join("");
+  $("days").innerHTML=list.map(d=>opt(`<small>${wk[d.getDay()]}</small><b>${String(d.getDate()).padStart(2,"0")}/${String(d.getMonth()+1).padStart(2,"0")}</b>`,key(d)===key(sel.d),`data-d="${key(d)}"`)).join("");
+  $("slots").innerHTML=hours.map(h=>{const off=taken(sel.d,h);return `<button type="button" class="opt" aria-pressed="${h===sel.h}" data-h="${h}" ${off?"disabled style=\"opacity:.35;text-decoration:line-through;cursor:not-allowed\"":""}><b>${h}</b></button>`}).join("");
+}
+$("form").addEventListener("click",e=>{
+  const b=e.target.closest(".opt");if(!b||b.disabled)return;
+  if(b.dataset.s)sel.s=b.dataset.s;
+  if(b.dataset.d){sel.d=list.find(d=>key(d)===b.dataset.d);if(sel.h&&taken(sel.d,sel.h))sel.h=null}
+  if(b.dataset.h)sel.h=b.dataset.h;
+  draw();
+});
+$("form").addEventListener("submit",e=>{
+  e.preventDefault();
+  const r=$("res");r.hidden=false;
+  if(!sel.h||!$("nome").value.trim()||$("tel").value.replace(/\D/g,"").length<10){
+    r.className="result err";r.textContent="Escolha um horário e informe nome e telefone com DDD.";return;
+  }
+  const d=sel.d;
+  r.className="result ok";
+  r.textContent=`Agendado: ${sel.s}, ${wk[d.getDay()]} ${String(d.getDate()).padStart(2,"0")}/${String(d.getMonth()+1).padStart(2,"0")} às ${sel.h}, em nome de ${$("nome").value.trim()}. (Demonstração: nenhum dado foi enviado.)`;
+});
+draw();
+</script>
+<script>
+(function(){
+  var a=document.getElementById("back");
+  a.addEventListener("click",function(e){
+    try{
+      if(history.length>1&&document.referrer&&new URL(document.referrer).origin===location.origin){e.preventDefault();history.back()}
+    }catch(err){}
+  });
+})();
+</script>
+</body>
+</html>
