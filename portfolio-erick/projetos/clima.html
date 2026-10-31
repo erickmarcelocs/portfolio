@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clima Agora</title>
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B5FD1'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='34' font-weight='800' text-anchor='middle' fill='white'%3E%C2%B0%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Archivo+Narrow:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    /* Layout: busca no topo, painel de condição atual com temperatura grande, previsão de 5 dias em linhas com barra de mínima e máxima. */
+    :root {
+      --bg: #E9EFF5;
+      --fg: #0F1E2E;
+      --muted: #51657A;
+      --line: #C9D5E1;
+      --surface: #FFFFFF;
+      --accent: #0B5FD1;
+      --accent-fg: #FFFFFF;
+      --warm: #E2672A;
+      --cool: #2B7BD4;
+      --err: #B3352B;
+      --display: 'Archivo', system-ui, sans-serif;
+      --body: 'Archivo Narrow', 'Archivo', system-ui, sans-serif;
+      color-scheme: light;
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0B131C;
+        --fg: #E6EEF6;
+        --muted: #93A5B8;
+        --line: #233343;
+        --surface: #121E2A;
+        --accent: #6AAEFF;
+        --accent-fg: #0B131C;
+        --warm: #FF9A62;
+        --cool: #6AAEFF;
+        --err: #FF8A7A;
+        color-scheme: dark
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0B131C;
+      --fg: #E6EEF6;
+      --muted: #93A5B8;
+      --line: #233343;
+      --surface: #121E2A;
+      --accent: #6AAEFF;
+      --accent-fg: #0B131C;
+      --warm: #FF9A62;
+      --cool: #6AAEFF;
+      --err: #FF8A7A;
+      color-scheme: dark
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    [hidden] {
+      display: none !important
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--body);
+      font-size: 18px;
+      line-height: 1.45;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px))
+    }
+
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding-bottom: 56px
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-block: 18px;
+      flex-wrap: wrap
+    }
+
+    .top b {
+      font-family: var(--display);
+      font-weight: 800;
+      letter-spacing: -.01em;
+      font-size: 1.1rem
+    }
+
+    .back {
+      text-decoration: none;
+      display: inline-block;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .82rem;
+      padding: 6px 12px;
+      border-radius: 999px
+    }
+
+    .back:hover {
+      color: var(--fg);
+      border-color: var(--muted)
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px
+    }
+
+    input {
+      font: inherit;
+      color: var(--fg);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 13px 14px;
+      min-width: 0;
+      width: 100%
+    }
+
+    .btn {
+      font: inherit;
+      font-weight: 600;
+      background: var(--accent);
+      color: var(--accent-fg);
+      border: 0;
+      border-radius: 10px;
+      padding: 13px 22px;
+      cursor: pointer
+    }
+
+    .btn:hover {
+      filter: brightness(1.08)
+    }
+
+    .btn[disabled] {
+      opacity: .6;
+      cursor: progress
+    }
+
+    .btn.ghost {
+      background: none;
+      color: var(--accent);
+      border: 1px solid var(--accent)
+    }
+
+    .quick {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin: 10px 0 28px
+    }
+
+    .chip {
+      font: inherit;
+      font-size: .9rem;
+      background: none;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 5px 14px;
+      cursor: pointer
+    }
+
+    .chip:hover {
+      color: var(--fg);
+      border-color: var(--muted)
+    }
+
+    .state {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 20px
+    }
+
+    .state.err {
+      border-color: var(--err)
+    }
+
+    .state h2 {
+      margin: 0 0 6px;
+      font-family: var(--display);
+      font-size: 1.15rem
+    }
+
+    .state p {
+      margin: 0 0 14px;
+      color: var(--muted)
+    }
+
+    .state .row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .skel {
+      height: 180px;
+      border-radius: 14px;
+      background: linear-gradient(90deg, var(--surface), var(--line), var(--surface));
+      background-size: 200% 100%;
+      animation: sh 1.2s linear infinite;
+      margin-bottom: 20px
+    }
+
+    @keyframes sh {
+      to {
+        background-position: -200% 0
+      }
+    }
+
+    .now {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px 24px;
+      align-items: end;
+      padding-bottom: 22px;
+      border-bottom: 2px solid var(--fg)
+    }
+
+    .place {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0
+    }
+
+    .place small {
+      display: block;
+      font-family: var(--body);
+      font-weight: 400;
+      color: var(--muted);
+      font-size: .92rem
+    }
+
+    .temp {
+      font-family: var(--display);
+      font-weight: 800;
+      font-stretch: 75%;
+      font-size: clamp(5rem, 22vw, 9rem);
+      line-height: .85;
+      letter-spacing: -.05em;
+      font-variant-numeric: tabular-nums
+    }
+
+    .temp sup {
+      font-size: .34em;
+      font-weight: 600;
+      letter-spacing: 0;
+      vertical-align: top;
+      position: relative;
+      top: .2em;
+      color: var(--muted)
+    }
+
+    .cond {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.3rem;
+      text-align: right
+    }
+
+    .cond small {
+      display: block;
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: .95rem;
+      color: var(--muted)
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding-block: 16px;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .facts span {
+      display: block;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted)
+    }
+
+    .facts b {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.25rem;
+      font-variant-numeric: tabular-nums
+    }
+
+    h3 {
+      font-family: var(--display);
+      font-size: .8rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 26px 0 4px
+    }
+
+    .day {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr) 150px;
+      gap: 6px 16px;
+      align-items: center;
+      padding-block: 13px;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .day .d {
+      font-family: var(--display);
+      font-weight: 700;
+      text-transform: capitalize
+    }
+
+    .day .c {
+      color: var(--muted);
+      overflow-wrap: anywhere
+    }
+
+    .rng {
+      display: grid;
+      grid-template-columns: 34px 1fr 34px;
+      gap: 8px;
+      align-items: center;
+      font-variant-numeric: tabular-nums;
+      font-size: .95rem
+    }
+
+    .rng .lo {
+      text-align: right;
+      color: var(--muted)
+    }
+
+    .bar {
+      height: 6px;
+      border-radius: 3px;
+      background: var(--line);
+      position: relative
+    }
+
+    .bar i {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--cool), var(--warm))
+    }
+
+    .note {
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: .85rem
+    }
+
+    @media (max-width:520px) {
+      .day {
+        grid-template-columns: 52px 1fr;
+      }
+
+      .day .rng {
+        grid-column: 1 / -1
+      }
+
+      .now {
+        grid-template-columns: 1fr
+      }
+
+      .cond {
+        text-align: left
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="top"><b>Clima Agora</b><a class="back" id="back" href="../index.html">← Voltar ao portfólio</a>
+    </header>
+    <main>
+      <form id="form" novalidate>
+        <input id="cidade" type="search" placeholder="Digite uma cidade" aria-label="Cidade" autocomplete="off"
+          value="Fortaleza">
+        <button class="btn" id="ok" type="submit">Buscar</button>
+      </form>
+      <div class="quick" role="group" aria-label="Cidades rápidas">
+        <button class="chip" type="button">Fortaleza</button><button class="chip" type="button">São Paulo</button>
+        <button class="chip" type="button">Porto Alegre</button><button class="chip"
+          type="button">Manaus</button><button class="chip" type="button">Lisboa</button>
+      </div>
+      <div id="out" aria-live="polite"></div>
+      <p class="note">Dados da API gratuita Open-Meteo (sem chave). Temperaturas em graus Celsius e vento em km/h.</p>
+    </main>
+  </div>
+  <script>
+    (function () {
+      var $ = function (id) { return document.getElementById(id) };
+      var GEO = "https://geocoding-api.open-meteo.com/v1/search";
+      var FORE = "https://api.open-meteo.com/v1/forecast";
+      var CODES = {
+        0: "Céu limpo", 1: "Quase limpo", 2: "Parcialmente nublado", 3: "Nublado", 45: "Neblina", 48: "Neblina com geada",
+        51: "Garoa fraca", 53: "Garoa", 55: "Garoa forte", 56: "Garoa congelante", 57: "Garoa congelante", 61: "Chuva fraca", 63: "Chuva", 65: "Chuva forte",
+        66: "Chuva congelante", 67: "Chuva congelante", 71: "Neve fraca", 73: "Neve", 75: "Neve forte", 77: "Grãos de neve",
+        80: "Pancadas fracas", 81: "Pancadas de chuva", 82: "Pancadas fortes", 85: "Pancadas de neve", 86: "Pancadas de neve",
+        95: "Tempestade", 96: "Tempestade com granizo", 99: "Tempestade com granizo forte"
+      };
+      var EXEMPLO = {
+        place: { name: "Fortaleza", admin1: "Ceará", country: "Brasil" },
+        cur: { temperature_2m: 29.4, apparent_temperature: 32.1, relative_humidity_2m: 68, wind_speed_10m: 21, weather_code: 2 },
+        daily: {
+          time: ["2026-11-02", "2026-11-03", "2026-11-04", "2026-11-05", "2026-11-06"], weather_code: [2, 1, 80, 2, 1],
+          temperature_2m_max: [31, 31, 30, 31, 32], temperature_2m_min: [25, 25, 24, 25, 25]
+        }
+      };
+
+      function out(html) { $("out").innerHTML = html }
+      function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML }
+
+      async function getJSON(url) {
+        var ctl = new AbortController(), t = setTimeout(function () { ctl.abort() }, 9000);
+        try {
+          var r = await fetch(url, { signal: ctl.signal });
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return await r.json();
+        } finally { clearTimeout(t) }
+      }
+
+      async function buscar(nome) {
+        nome = nome.trim();
+        if (!nome) { erro("Digite o nome de uma cidade.", ""); return }
+        $("ok").disabled = true;
+        out('<div class="skel" aria-label="Carregando"></div>');
+        try {
+          var g = await getJSON(GEO + "?name=" + encodeURIComponent(nome) + "&count=1&language=pt&format=json");
+          if (!g.results || !g.results.length) { erro("Cidade não encontrada", "Confira a grafia de \"" + nome + "\" e tente de novo."); return }
+          var p = g.results[0];
+          var f = await getJSON(FORE + "?latitude=" + p.latitude + "&longitude=" + p.longitude +
+            "&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code" +
+            "&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5");
+          mostrar({ place: p, cur: f.current, daily: f.daily });
+          try { localStorage.setItem("clima-ultima", p.name) } catch (e) { }
+        } catch (e) {
+          var offline = e.name === "AbortError" ? "A consulta demorou demais." : "Não foi possível acessar o serviço de clima.";
+          erro(offline, "Verifique sua conexão e tente de novo.", true);
+        } finally { $("ok").disabled = false }
+      }
+
+      function erro(titulo, msg, ex) {
+        out('<div class="state err" role="alert"><h2>' + esc(titulo) + '</h2><p>' + esc(msg) + '</p><div class="row">' +
+          (ex ? '<button class="btn" type="button" id="retry">Tentar de novo</button><button class="btn ghost" type="button" id="exemplo">Ver dados de exemplo</button>' : '') + '</div></div>');
+        var r = $("retry"); if (r) r.onclick = function () { buscar($("cidade").value) };
+        var x = $("exemplo"); if (x) x.onclick = function () { mostrar(EXEMPLO, true) };
+      }
+
+      function mostrar(d, exemplo) {
+        var c = d.cur, p = d.place, dy = d.daily;
+        var lo = Math.min.apply(null, dy.temperature_2m_min), hi = Math.max.apply(null, dy.temperature_2m_max), span = Math.max(hi - lo, 1);
+        var rows = dy.time.map(function (t, i) {
+          var dia = i === 0 ? "Hoje" : new Date(t + "T12:00:00").toLocaleDateString("pt-BR", { weekday: "short" }).replace(".", "");
+          var mn = dy.temperature_2m_min[i], mx = dy.temperature_2m_max[i];
+          var l = (mn - lo) / span * 100, w = Math.max((mx - mn) / span * 100, 6);
+          return '<div class="day"><span class="d">' + dia + '</span><span class="c">' + (CODES[dy.weather_code[i]] || "—") + '</span>' +
+            '<span class="rng"><span class="lo">' + Math.round(mn) + '°</span><span class="bar"><i style="left:' + l + '%;width:' + w + '%"></i></span><span>' + Math.round(mx) + '°</span></span></div>';
+        }).join("");
+        var local = [p.admin1, p.country].filter(Boolean).join(", ");
+        out((exemplo ? '<div class="state"><p style="margin:0">Dados de exemplo, não são a previsão real de hoje.</p></div>' : '') +
+          '<div class="now"><div><p class="place">' + esc(p.name) + '<small>' + esc(local) + '</small></p>' +
+          '<div class="temp">' + Math.round(c.temperature_2m) + '<sup>°C</sup></div></div>' +
+          '<div class="cond">' + (CODES[c.weather_code] || "—") + '<small>Sensação de ' + Math.round(c.apparent_temperature) + '°</small></div></div>' +
+          '<div class="facts"><div><span>Umidade</span><b>' + Math.round(c.relative_humidity_2m) + '%</b></div>' +
+          '<div><span>Vento</span><b>' + Math.round(c.wind_speed_10m) + ' km/h</b></div>' +
+          '<div><span>Hoje</span><b>' + Math.round(dy.temperature_2m_min[0]) + '° / ' + Math.round(dy.temperature_2m_max[0]) + '°</b></div></div>' +
+          '<h3>Próximos 5 dias</h3>' + rows);
+      }
+
+      $("form").addEventListener("submit", function (e) { e.preventDefault(); buscar($("cidade").value) });
+      document.querySelector(".quick").addEventListener("click", function (e) {
+        var c = e.target.closest(".chip"); if (c) { $("cidade").value = c.textContent; buscar(c.textContent) }
+      });
+      $("back").addEventListener("click", function (e) {
+        try { if (history.length > 1 && document.referrer && new URL(document.referrer).origin === location.origin) { e.preventDefault(); history.back() } } catch (err) { }
+      });
+      var ini = "Fortaleza"; try { ini = localStorage.getItem("clima-ultima") || ini } catch (e) { }
+      $("cidade").value = ini; buscar(ini);
+    })();
+  </script>
+</body>
+
+</html>

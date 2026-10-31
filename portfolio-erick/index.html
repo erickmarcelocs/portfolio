@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Erick Marcelo</title>
+  <meta name="description"
+    content="Portfólio de Erick Marcelo, técnico em Desenvolvimento de Sistemas e candidato a estágio, de Cascavel, Ceará. Projetos de front-end em HTML, CSS e JavaScript.">
+  <meta property="og:title" content="Erick Marcelo, desenvolvimento de sistemas">
+  <meta property="og:description" content="Sites que carregam rápido e convertem. Veja os projetos e entre em contato.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://erickmarcelocs.github.io/portfolio/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232438D6'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-size='30' font-weight='800' text-anchor='middle' fill='white'%3EEM%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    /* Layout: coluna editorial larga; projetos como índice de catálogo com miniatura; Sobre com foto; contatos como linhas de diretório */
+    :root {
+      --bg: #F1F3F6;
+      --fg: #12161F;
+      --muted: #586073;
+      --line: #CCD2DC;
+      --surface: #E6E9EF;
+      --accent: #2438D6;
+      --accent-fg: #FFFFFF;
+      --ok: #1F9D55;
+      --display: 'Bricolage Grotesque', system-ui, sans-serif;
+      --body: 'Instrument Sans', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+      color-scheme: light;
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0C101A;
+        --fg: #E8EBF2;
+        --muted: #9AA2B5;
+        --line: #272E40;
+        --surface: #151B29;
+        --accent: #8C9CFF;
+        --accent-fg: #0C101A;
+        --ok: #4CD38A;
+        color-scheme: dark
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0C101A;
+      --fg: #E8EBF2;
+      --muted: #9AA2B5;
+      --line: #272E40;
+      --surface: #151B29;
+      --accent: #8C9CFF;
+      --accent-fg: #0C101A;
+      --ok: #4CD38A;
+      color-scheme: dark
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    [hidden] {
+      display: none !important
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 72px
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.6;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+      padding-block: 0 48px
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0 0 auto;
+      height: env(safe-area-inset-top, 0px);
+      z-index: 10;
+      background: var(--bg)
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto
+    }
+
+    a {
+      color: inherit
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px
+    }
+
+    .mono {
+      font-family: var(--mono);
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .top {
+      position: sticky;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 11;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px 16px;
+      padding-block: 14px;
+      flex-wrap: wrap
+    }
+
+    .top .name {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -.01em;
+      text-decoration: none
+    }
+
+    .top nav {
+      display: flex;
+      gap: 22px;
+      font-size: .95rem
+    }
+
+    .top nav a {
+      text-decoration: none;
+      color: var(--muted);
+      padding-block: 4px;
+      border-bottom: 2px solid transparent
+    }
+
+    .top nav a:hover {
+      color: var(--fg);
+      border-bottom-color: var(--accent)
+    }
+
+    .hero {
+      padding-block: 72px 64px
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .status::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ok);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok) 22%, transparent)
+    }
+
+    .hero h1 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(2.6rem, 8.5vw, 6rem);
+      line-height: .98;
+      letter-spacing: -.04em;
+      margin: 18px 0 28px;
+      text-wrap: balance;
+      max-width: 14ch
+    }
+
+    .hero h1 span {
+      color: var(--accent)
+    }
+
+    .hero p {
+      max-width: 52ch;
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin: 0 0 28px
+    }
+
+    .cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 5px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font: inherit;
+      font-weight: 500;
+      padding: 12px 22px;
+      border-radius: 6px;
+      border: 1px solid var(--fg);
+      cursor: pointer;
+      background: none;
+      color: var(--fg);
+      transition: transform .15s ease
+    }
+
+    .btn:hover {
+      transform: translateY(-1px)
+    }
+
+    .btn.main {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-fg)
+    }
+
+    .btn.small {
+      padding: 8px 16px;
+      font-size: .92rem
+    }
+
+    section {
+      padding-block: 64px 0
+    }
+
+    .sechead {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      border-bottom: 1px solid var(--fg);
+      padding-bottom: 10px;
+      margin-bottom: 6px
+    }
+
+    h2 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1.6rem;
+      letter-spacing: -.02em;
+      margin: 0
+    }
+
+    .proj {
+      position: relative;
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr) 240px;
+      gap: 8px 24px;
+      padding: 26px 12px;
+      margin-inline: -12px;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+      transition: background .15s ease
+    }
+
+    .proj:hover {
+      background: var(--surface)
+    }
+
+    .proj .yr {
+      padding-top: 8px
+    }
+
+    .proj h3 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: clamp(1.5rem, 3.6vw, 2.2rem);
+      letter-spacing: -.025em;
+      line-height: 1.1;
+      margin: 0
+    }
+
+    .proj h3 a {
+      text-decoration: none
+    }
+
+    .proj h3 a::after {
+      content: "";
+      position: absolute;
+      inset: 0
+    }
+
+    .proj p {
+      margin: 8px 0 12px;
+      color: var(--muted);
+      max-width: 54ch
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px
+    }
+
+    .tags span {
+      font-family: var(--mono);
+      font-size: .72rem;
+      border: 1px solid var(--line);
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: var(--muted)
+    }
+
+    .links {
+      display: flex;
+      gap: 18px;
+      margin-top: 12px;
+      font-family: var(--mono);
+      font-size: .8rem;
+      position: relative;
+      z-index: 1
+    }
+
+    .links .go {
+      color: var(--accent);
+      transition: transform .15s ease;
+      display: inline-block
+    }
+
+    .proj:hover .go {
+      transform: translateX(6px)
+    }
+
+    .links a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 3px
+    }
+
+    .links a:hover {
+      color: var(--fg)
+    }
+
+    .thumb {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      object-position: top;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface)
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px
+    }
+
+    .two>* {
+      min-width: 0
+    }
+
+    .about p {
+      margin: 0 0 16px;
+      color: var(--muted)
+    }
+
+    .about p.big {
+      color: var(--fg);
+      font-size: 1.15rem
+    }
+
+    .me {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 20px
+    }
+
+    .avatar {
+      position: relative;
+      flex: none;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--accent);
+      color: var(--accent-fg);
+      display: grid;
+      place-items: center;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 2rem;
+      letter-spacing: -.02em
+    }
+
+    .avatar img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .me strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 1.25rem;
+      letter-spacing: -.01em
+    }
+
+    dl {
+      margin: 0;
+      display: grid;
+      gap: 0
+    }
+
+    dl div {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 16px;
+      padding-block: 14px;
+      border-bottom: 1px solid var(--line)
+    }
+
+    dt {
+      font-family: var(--mono);
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 3px
+    }
+
+    dd {
+      margin: 0
+    }
+
+    .contacts {
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    .contacts li {
+      display: grid;
+      grid-template-columns: 110px minmax(0, 1fr) auto;
+      gap: 8px 20px;
+      align-items: center;
+      padding-block: 18px;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .contacts .val {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: clamp(1.15rem, 3.6vw, 1.6rem);
+      letter-spacing: -.015em;
+      overflow-wrap: anywhere
+    }
+
+    .acts {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap
+    }
+
+    @media (max-width:760px) {
+      .hero {
+        padding-block: 40px 40px
+      }
+
+      .proj {
+        grid-template-columns: 1fr;
+        gap: 10px
+      }
+
+      .proj .yr {
+        padding-top: 0;
+        order: -2
+      }
+
+      .thumb {
+        order: -1
+      }
+
+      .two {
+        grid-template-columns: 1fr;
+        gap: 32px
+      }
+
+      dl div {
+        grid-template-columns: 1fr;
+        gap: 2px
+      }
+
+      .contacts li {
+        grid-template-columns: 1fr;
+        gap: 6px
+      }
+
+      .top nav {
+        gap: 16px
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
+
+      * {
+        transition: none !important
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="name" href="#topo">Erick Marcelo</a>
+      <nav aria-label="Seções">
+        <a href="#projetos">Projetos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </header>
+
+    <main id="topo">
+      <div class="hero">
+        <span class="mono status">Candidato a estágio em Desenvolvimento de Sistemas · Cascavel, CE</span>
+        <h1>Sites que carregam rápido e <span>convertem</span>.</h1>
+        <p>Desenvolvo sites institucionais, lojas virtuais e sistemas de agendamento. Cada projeto parte de uma pergunta
+          simples: o que o visitante precisa fazer aqui?</p>
+        <div class="cta">
+          <a class="btn main"
+            href="https://wa.me/5585991578662?text=Ol%C3%A1%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar."
+            target="_blank" rel="noopener">Falar no WhatsApp</a>
+          <a class="btn" href="#projetos">Ver projetos</a>
+          <a class="btn" href="curriculo.pdf" target="_blank" rel="noopener">Baixar currículo</a>
+        </div>
+      </div>
+
+      <section id="projetos">
+        <div class="sechead">
+          <h2>Projetos</h2><span class="mono">6 projetos de prática</span>
+        </div>
+
+        <article class="proj" data-file="norte-solar">
+          <span class="mono yr">2026</span>
+          <div>
+            <h3><a href="projetos/norte-solar.html">Norte Solar</a></h3>
+            <p>Landing page de uma empresa fictícia de energia solar, com simulador de economia, serviços, etapas e
+              formulário de contato. Layout responsivo.</p>
+            <div class="tags"><span>HTML</span><span>CSS Grid</span><span>JavaScript</span><span>Responsivo</span></div>
+            <div class="links"><span class="go">Abrir projeto →</span><a class="code" hidden target="_blank"
+                rel="noopener">Ver código</a></div>
+          </div>
+          <img class="thumb" src="img/norte-solar.jpg" width="720" height="450" loading="lazy"
+            alt="Captura de tela da página Norte Solar, com o simulador de economia de energia">
+        </article>
+
+        <article class="proj" data-file="tarefas">
+          <span class="mono yr">2026</span>
+          <div>
+            <h3><a href="projetos/tarefas.html">Tarefas</a></h3>
+            <p>Gerenciador para adicionar, concluir, editar e excluir tarefas, com prioridades, filtros e dados salvos
+              no navegador.</p>
+            <div class="tags"><span>JavaScript</span><span>DOM</span><span>Eventos</span><span>localStorage</span></div>
+            <div class="links"><span class="go">Abrir projeto →</span><a class="code" hidden target="_blank"
+                rel="noopener">Ver código</a></div>
+          </div>
+          <img class="thumb" src="img/tarefas.jpg" width="720" height="450" loading="lazy"
+            alt="Captura de tela do gerenciador de tarefas, com lista e filtros">
+        </article>
+
+        <article class="proj" data-file="clima">
+          <span class="mono yr">2026</span>
+          <div>
+            <h3><a href="projetos/clima.html">Clima Agora</a></h3>
+            <p>Consulta uma API de previsão do tempo, com busca por cidade, previsão de 5 dias, estado de carregamento e
+              tratamento de erros.</p>
+            <div class="tags"><span>API REST</span><span>async/await</span><span>Tratamento de erros</span></div>
+            <div class="links"><span class="go">Abrir projeto →</span><a class="code" hidden target="_blank"
+                rel="noopener">Ver código</a></div>
+          </div>
+          <img class="thumb" src="img/clima.jpg" width="720" height="450" loading="lazy"
+            alt="Captura de tela do app de clima, com temperatura atual e previsão de 5 dias">
+        </article>
+
+        <article class="proj" data-file="forno-e-brasa">
+          <span class="mono yr">2026</span>
+          <div>
+            <h3><a href="projetos/forno-e-brasa.html">Forno &amp; Brasa</a></h3>
+            <p>Site para pizzaria napolitana com cardápio filtrável por categoria e reserva de mesa com validação.</p>
+            <div class="tags"><span>HTML</span><span>CSS Grid</span><span>JavaScript</span></div>
+            <div class="links"><span class="go">Abrir projeto →</span><a class="code" hidden target="_blank"
+                rel="noopener">Ver código</a></div>
+          </div>
+          <img class="thumb" src="img/forno-e-brasa.jpg" width="720" height="450" loading="lazy"
+            alt="Captura de tela do site da pizzaria Forno e Brasa, tema escuro">
+        </article>
+
+        <article class="proj" data-file="argila">
+          <span class="mono yr">2026</span>
+          <div>
+            <h3><a href="projetos/argila.html">Argila Ateliê</a></h3>
+            <p>Loja virtual de cerâmica com sacola funcional, controle de quantidade, total em reais e barra de frete
+              grátis.</p>
+            <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Carrinho</span></div>
+            <div class="links"><span class="go">Abrir projeto →</span><a class="code" hidden target="_blank"
+                rel="noopener">Ver código</a></div>
+          </div>
+          <img class="thumb" src="img/argila.jpg" width="720" height="450" loading="lazy"
+            alt="Captura de tela da loja Argila Ateliê, com peças de cerâmica">
+        </article>
+
+        <article class="proj" data-file="clinica-mar">
+          <span class="mono yr">2026</span>
+          <div>
+            <h3><a href="projetos/clinica-mar.html">Clínica Mar</a></h3>
+            <p>Site institucional para clínica odontológica com agendador em passos: tratamento, dia, horário e dados do
+              paciente.</p>
+            <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Formulários</span></div>
+            <div class="links"><span class="go">Abrir projeto →</span><a class="code" hidden target="_blank"
+                rel="noopener">Ver código</a></div>
+          </div>
+          <img class="thumb" src="img/clinica-mar.jpg" width="720" height="450" loading="lazy"
+            alt="Captura de tela do site da Clínica Mar Odontologia">
+        </article>
+
+        <p class="mono" style="margin:14px 0 0">Projetos de prática com empresas e dados fictícios. Cada um foi feito
+          para treinar uma habilidade específica.</p>
+      </section>
+
+      <section id="sobre">
+        <div class="two about">
+          <div>
+            <div class="sechead">
+              <h2>Sobre</h2>
+            </div>
+            <div class="me">
+              <div class="avatar" aria-hidden="true">EM<img src="foto.jpeg" alt=""
+                  onerror="if(!this.dataset.t){this.dataset.t=1;this.src='foto.jpg'}else{this.remove()}"></div>
+              <div><strong>Erick Marcelo</strong><span class="mono">Candidato a estágio · Cascavel, CE</span></div>
+            </div>
+            <p class="big">Candidato a estágio em Desenvolvimento de Sistemas. Técnico em Desenvolvimento de Sistemas
+              pelo SENAI Centro, de Cascavel, Ceará.</p>
+            <p>Cinco anos de robótica competitiva e membro da equipe Ironhide, de robótica FIRST Tech Challenge (FTC):
+              programação dos robôs em Java,
+              gestão das atividades da equipe e mentoria dos integrantes.</p>
+            <p>Agora aplico essa base em desenvolvimento de software: Java, JavaScript, Python, SQL e front-end. Os
+              projetos desta página são exercícios de prática, e o código de cada um está no GitHub.</p>
+            <div class="cta">
+              <a class="btn small" href="https://www.instagram.com/ironhide.ftc/" target="_blank" rel="noopener">
+                Conheça a IRONHIDE
+              </a>
+
+              <a class="btn small" href="curriculo.pdf" target="_blank" rel="noopener">
+                Baixar currículo (PDF)
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="sechead">
+              <h2>Stack</h2>
+            </div>
+            <dl>
+              <div>
+                <dt>Linguagens</dt>
+                <dd>Java, JavaScript, Python, HTML, CSS</dd>
+              </div>
+              <div>
+                <dt>Dados</dt>
+                <dd>SQL e bancos de dados</dd>
+              </div>
+              <div>
+                <dt>Web</dt>
+                <dd>APIs REST, fetch, async/await, layout responsivo, acessibilidade básica</dd>
+              </div>
+              <div>
+                <dt>Ferramentas</dt>
+                <dd>Git, GitHub, GitHub Pages, VS Code</dd>
+              </div>
+              <div>
+                <dt>Formação</dt>
+                <dd>Técnico em Desenvolvimento de Sistemas, SENAI Centro</dd>
+              </div>
+              <div>
+                <dt>Robótica</dt>
+                <dd>Ironhide (FTC), 3 temporadas. 2× campeão regional, Think Award, Inspire Award, campeão de arena,
+                  aliança
+                  finalista</dd>
+              </div>
+              <div>
+                <dt>Idiomas</dt>
+                <dd>Inglês básico</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section id="contato">
+        <div class="sechead">
+          <h2>Contato</h2><span class="mono">Respondo no mesmo dia</span>
+        </div>
+        <ul class="contacts">
+          <li>
+            <span class="mono">WhatsApp</span>
+            <span class="val">(85) 99157-8662</span>
+            <span class="acts"><a class="btn main small"
+                href="https://wa.me/5585991578662?text=Ol%C3%A1%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar."
+                target="_blank" rel="noopener">Abrir conversa</a></span>
+          </li>
+          <li>
+            <span class="mono">E-mail</span>
+            <span class="val" id="mail">erick.marcelocs10@gmail.com</span>
+            <span class="acts">
+              <a class="btn small" href="mailto:erick.marcelocs10@gmail.com">Enviar e-mail</a>
+              <button class="btn small" id="copy" type="button">Copiar</button>
+            </span>
+          </li>
+          <li>
+            <span class="mono">LinkedIn</span>
+            <span class="val">in/erick-marcelo-79887b447</span>
+            <span class="acts"><a class="btn small" href="https://www.linkedin.com/in/erick-marcelo-79887b447"
+                target="_blank" rel="noopener">Ver perfil</a></span>
+          </li>
+          <li>
+            <span class="mono">GitHub</span>
+            <span class="val">github.com/erickmarcelocs</span>
+            <span class="acts"><a class="btn small" href="https://github.com/erickmarcelocs" target="_blank"
+                rel="noopener">Ver perfil</a></span>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <span class="mono">© 2026 Erick Marcelo</span>
+      <span class="mono">Feito à mão com HTML, CSS e JavaScript</span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      /* Links "Ver código": apontam para github.com/USUARIO/REPO/blob/main/projetos/ARQUIVO.html */
+      var GITHUB_USER = "erickmarcelocs";
+      var REPO = "portfolio";
+      if (GITHUB_USER) {
+        document.querySelectorAll(".proj").forEach(function (p) {
+          var a = p.querySelector(".code");
+          a.href = "https://github.com/" + GITHUB_USER + "/" + REPO + "/blob/main/projetos/" + p.dataset.file + ".html";
+          a.hidden = false;
+        });
+      }
+
+      var b = document.getElementById("copy"), m = document.getElementById("mail");
+      b.addEventListener("click", function () {
+        function done(t) { b.textContent = t; setTimeout(function () { b.textContent = "Copiar" }, 1800) }
+        function sel() { var r = document.createRange(); r.selectNodeContents(m); var s = getSelection(); s.removeAllRanges(); s.addRange(r); done("Selecionado") }
+        try {
+          navigator.clipboard.writeText(m.textContent).then(function () { done("Copiado") }, sel);
+        } catch (e) { sel() }
+      });
+    })();
+  </script>
+</body>
+
+</html>
