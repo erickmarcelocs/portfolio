@@ -9,6 +9,7 @@ portfolio-erick/
 ├── index.html                  página principal (projetos, sobre, contato)
 ├── img/                        capturas dos projetos e imagem de compartilhamento
 ├── projetos/
+│   ├── orvalle-joias.html      loja de joias (catálogo, sacola e contato)
 │   ├── norte-solar.html        landing page (simulador + contato)
 │   ├── tarefas.html            gerenciador de tarefas (CRUD + localStorage)
 │   ├── clima.html              app de clima (API Open-Meteo)
@@ -18,6 +19,6 @@ portfolio-erick/
 └── README.md
 ```
 
-Os seis projetos são demonstrações com empresas e dados fictícios. O app de clima usa a API gratuita Open-Meteo e precisa de internet.
+Os sete projetos são demonstrações com empresas e dados fictícios. O app de clima usa a API gratuita Open-Meteo e precisa de internet.
 
 

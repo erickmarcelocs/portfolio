@@ -408,7 +408,9 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%
     }
 
     .me strong {
@@ -549,7 +551,7 @@
     <main id="topo">
       <div class="hero">
         <span class="mono status">Candidato a estágio em Desenvolvimento de Sistemas · Cascavel, CE</span>
-        <h1>Sites que <span>convertem</span>.</h1>
+        <h1>Sites que atraem e <span>convertem</span>.</h1>
         <p>Desenvolvo sites institucionais, lojas virtuais e sistemas de agendamento. Cada projeto parte de uma pergunta
           simples: o que o visitante precisa fazer aqui?</p>
         <div class="cta">
@@ -563,8 +565,22 @@
 
       <section id="projetos">
         <div class="sechead">
-          <h2>Projetos</h2><span class="mono">6 projetos de prática</span>
+          <h2>Projetos</h2><span class="mono">7 projetos de prática</span>
         </div>
+
+        <article class="proj" data-file="orvalle-joias">
+          <span class="mono yr">2026</span>
+          <div>
+            <h3><a href="projetos/orvalle-joias.html">Orvalle Joias</a></h3>
+            <p>Landing page de uma loja fictícia de joias e acessórios, com sistema de catálogo, sacola e
+              meio de contato direto com a Loja. Layout responsivo.</p>
+            <div class="tags"><span>HTML</span><span>CSS Grid</span><span>JavaScript</span><span>Responsivo</span></div>
+            <div class="links"><span class="go">Abrir projeto →</span><a class="code" hidden target="_blank"
+                rel="noopener">Ver código</a></div>
+          </div>
+          <img class="thumb" src="img/orvalle-joias.jpg" width="720" height="450" loading="lazy"
+            alt="Captura de tela da página Orvalle Joias, com o sistema de catálogo de produtos">
+        </article>
 
         <article class="proj" data-file="norte-solar">
           <span class="mono yr">2026</span>
@@ -660,14 +676,13 @@
               <h2>Sobre</h2>
             </div>
             <div class="me">
-              <div class="avatar" aria-hidden="true">EM<img src="foto.jpeg" alt=""
-                  onerror="if(!this.dataset.t){this.dataset.t=1;this.src='foto.jpg'}else{this.remove()}"></div>
+              <div class="avatar" aria-hidden="true">EM<img src="img/foto-erick.jpg" width="480" height="480" alt="" onerror="this.remove()"></div>
               <div><strong>Erick Marcelo</strong><span class="mono">Candidato a estágio · Cascavel, CE</span></div>
             </div>
             <p class="big">Candidato a estágio em Desenvolvimento de Sistemas. Técnico em Desenvolvimento de Sistemas
               pelo SENAI Centro, de Cascavel, Ceará.</p>
-            <p>Cinco anos de robótica competitiva e membro da equipe Ironhide, de robótica FIRST Tech Challenge (FTC):
-              programação dos robôs em Java,
+            <p>Cinco anos de robótica competitiva: dois na FIRST LEGO League (FLL) e três na equipe Ironhide, da FIRST Tech Challenge (FTC),
+              com programação dos robôs em Java,
               gestão das atividades da equipe e mentoria dos integrantes.</p>
             <p>Agora aplico essa base em desenvolvimento de software: Java, JavaScript, Python, SQL e front-end. Os
               projetos desta página são exercícios de prática, e o código de cada um está no GitHub.</p>

@@ -1,0 +1,3072 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset=utf8>
+  <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <style>
+    :root {
+      color-scheme: light;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font: 14px -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #fff;
+      color: #000
+    }
+
+    img {
+      max-width: 100%
+    }
+
+    [hidden]:not([hidden=until-found i]) {
+      display: none !important
+    }
+  </style>
+</head>
+
+<body>
+  <title>Orvalle Joias</title>
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230C1310'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23C9A45C'%3EO%3C/text%3E%3C/svg%3E">
+  <meta name="claude:viewport-fit-sides" content="cover">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap">
+  <style>
+    /* Layout: cabeçalho flutuante em vidro, hero com moldura inclinável, faixa animada, coleções em painéis, catálogo com busca e favoritos, ficha da peça sobre fundo desfocado, gaveta de lista, sobre com calculadora de teor, contato. */
+    :root {
+      --bg: #0C1310;
+      --bg-2: #101915;
+      --surface: #16211C;
+      --surface-2: #1D2A25;
+      --fg: #EFE8D8;
+      --muted: #9DA79F;
+      --line: #2B3932;
+      --hair: color-mix(in srgb, var(--fg) 12%, transparent);
+      --gold: #C9A45C;
+      --gold-hi: #EBD39A;
+      --gold-lo: #8F6F31;
+      --silver: #BCC6CD;
+      --on-metal: #0C1310;
+      --metal: var(--gold);
+      --sw: 400;
+      --fsm: antialiased;
+      --r: 22px;
+      --r-sm: 14px;
+      --serif: 'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
+      --sans: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+      color-scheme: dark;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) {
+        --bg: #F5F1E8;
+        --bg-2: #EEE8DB;
+        --surface: #FBF9F4;
+        --surface-2: #EAE4D6;
+        --fg: #101A15;
+        --muted: #3D4942;
+        --line: #CFC6B1;
+        --gold: #76561A;
+        --gold-hi: #8F6B26;
+        --gold-lo: #5C420F;
+        --silver: #46525B;
+        --on-metal: #FBF8F1;
+        --sw: 500;
+        --fsm: auto;
+        color-scheme: light;
+      }
+    }
+
+    :root[data-theme="light"] {
+      --bg: #F5F1E8;
+      --bg-2: #EEE8DB;
+      --surface: #FBF9F4;
+      --surface-2: #EAE4D6;
+      --fg: #101A15;
+      --muted: #3D4942;
+      --line: #CFC6B1;
+      --gold: #76561A;
+      --gold-hi: #8F6B26;
+      --gold-lo: #5C420F;
+      --silver: #46525B;
+      --on-metal: #FBF8F1;
+      --sw: 500;
+      --fsm: auto;
+      color-scheme: light;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font: 400 16px/1.65 var(--sans);
+      -webkit-font-smoothing: var(--fsm);
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0 0 auto;
+      height: env(safe-area-inset-top, 0px);
+      background: var(--bg);
+      z-index: 45
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--serif);
+      font-weight: var(--sw);
+      line-height: 1.06;
+      margin: 0;
+      text-wrap: balance
+    }
+
+    p {
+      margin: 0
+    }
+
+    a {
+      color: inherit
+    }
+
+    button {
+      font: inherit;
+      color: inherit
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--gold-hi);
+      outline-offset: 3px
+    }
+
+    .w {
+      max-width: 1280px;
+      margin-inline: auto;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px))
+    }
+
+    section {
+      padding-block: clamp(60px, 9vw, 120px);
+      scroll-margin-top: calc(92px + env(safe-area-inset-top, 0px))
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font: 500 11.5px/1.3 var(--sans);
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--gold)
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor
+    }
+
+    .lede {
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: 1.0625rem
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 30px;
+      border-radius: 999px;
+      font: 500 12px/1 var(--sans);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--gold);
+      cursor: pointer;
+      transition: background .3s, color .3s, border-color .3s, transform .3s
+    }
+
+    .btn:hover {
+      transform: translateY(-2px)
+    }
+
+    .btn.solid {
+      background: linear-gradient(135deg, var(--gold-hi), var(--gold) 55%, var(--gold-lo));
+      color: var(--on-metal);
+      border-color: transparent
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--fg);
+      border-color: var(--hair)
+    }
+
+    .btn.ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .btn.sm {
+      min-height: 44px;
+      padding: 0 22px
+    }
+
+    .btn:disabled {
+      opacity: .5;
+      cursor: default;
+      transform: none
+    }
+
+    /* cabeçalho flutuante */
+    .hd {
+      position: sticky;
+      top: calc(env(safe-area-inset-top, 0px) + 10px);
+      z-index: 40
+    }
+
+    .pb {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 66px;
+      padding: 0 10px 0 28px;
+      border: 1px solid var(--hair);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--bg) 66%, transparent);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      backdrop-filter: blur(20px) saturate(1.4)
+    }
+
+    .prog {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: -1px;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--gold-lo), var(--gold-hi));
+      transform: scaleX(var(--p, 0));
+      transform-origin: left;
+      pointer-events: none
+    }
+
+    .brand {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1
+    }
+
+    .brand-n {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      letter-spacing: .34em;
+      padding-left: .34em
+    }
+
+    .brand-s {
+      font: 500 9.5px/1 var(--sans);
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 6px;
+      text-align: center;
+      padding-left: .5em
+    }
+
+    .nav {
+      display: flex;
+      gap: clamp(4px, 1.2vw, 12px)
+    }
+
+    .nav a {
+      font: 500 11.5px/1 var(--sans);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 12px 16px;
+      border-radius: 999px;
+      transition: background .25s, color .25s
+    }
+
+    .nav a:hover {
+      background: color-mix(in srgb, var(--gold) 14%, transparent);
+      color: var(--gold)
+    }
+
+    .tools {
+      display: flex;
+      gap: 8px
+    }
+
+    .ib {
+      position: relative;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 1px solid var(--hair);
+      cursor: pointer;
+      transition: border-color .25s, background .25s, transform .25s
+    }
+
+    .ib:hover {
+      border-color: var(--gold);
+      transform: translateY(-1px)
+    }
+
+    .badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 5px;
+      border-radius: 999px;
+      background: var(--gold);
+      color: var(--on-metal);
+      font: 600 11px/20px var(--sans);
+      text-align: center
+    }
+
+    .badge[hidden] {
+      display: none
+    }
+
+    .menu-btn {
+      display: none
+    }
+
+    @media (max-width:900px) {
+      .menu-btn {
+        display: inline-flex
+      }
+
+      .pb {
+        padding-left: 20px
+      }
+
+      .nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 2px;
+        padding: 10px;
+        border: 1px solid var(--hair);
+        border-radius: 26px;
+        background: color-mix(in srgb, var(--bg) 82%, transparent);
+        -webkit-backdrop-filter: blur(22px);
+        backdrop-filter: blur(22px)
+      }
+
+      .nav.open {
+        display: flex
+      }
+
+      .nav a {
+        padding: 16px 18px
+      }
+    }
+
+    /* hero */
+    .hero {
+      position: relative;
+      padding-block: clamp(36px, 6vw, 84px) clamp(48px, 7vw, 96px)
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -10% -10% auto auto;
+      width: min(720px, 90vw);
+      aspect-ratio: 1;
+      background: radial-gradient(circle, color-mix(in srgb, var(--gold) 22%, transparent), transparent 65%);
+      filter: blur(30px);
+      pointer-events: none
+    }
+
+    .hero .w {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+      gap: clamp(32px, 6vw, 96px);
+      align-items: center
+    }
+
+    .hero h1 {
+      font-size: clamp(2.9rem, 7vw, 6rem);
+      letter-spacing: -.02em;
+      margin-block: 24px 26px
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+      background: linear-gradient(100deg, var(--gold) 30%, var(--gold-hi) 48%, var(--gold) 66%);
+      background-size: 260% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: sheen 3.2s .5s ease-out 1 both
+    }
+
+    @keyframes sheen {
+      from {
+        background-position: 110% 0
+      }
+
+      to {
+        background-position: 0 0
+      }
+    }
+
+    .hero .lede {
+      margin-bottom: 38px
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px
+    }
+
+    .marks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 36px;
+      margin-top: 52px;
+      padding-top: 26px;
+      border-top: 1px solid var(--hair)
+    }
+
+    .mark {
+      display: flex;
+      align-items: baseline;
+      gap: 12px
+    }
+
+    .mark b {
+      font: var(--sw) 2.1rem/1 var(--serif);
+      color: var(--gold)
+    }
+
+    .mark span {
+      font: 500 11px/1.4 var(--sans);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .stage3d {
+      perspective: 1100px;
+      justify-self: end;
+      width: 100%;
+      max-width: 500px
+    }
+
+    .frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 5/6;
+      border-radius: 32px;
+      border: 1px solid var(--hair);
+      background: radial-gradient(ellipse at 50% 28%, color-mix(in srgb, var(--gold) 20%, var(--surface-2)), var(--surface) 74%);
+      transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+      transition: transform .25s ease-out;
+      transform-style: preserve-3d;
+      overflow: hidden
+    }
+
+    .frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 20%), color-mix(in srgb, #fff 16%, transparent), transparent 55%);
+      pointer-events: none
+    }
+
+    .frame svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%
+    }
+
+    .fchip {
+      position: absolute;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--hair);
+      background: color-mix(in srgb, var(--bg) 60%, transparent);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      font: 500 11px/1 var(--sans);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      animation: flt 7s ease-in-out infinite;
+      transition: border-color .25s
+    }
+
+    .fchip:hover {
+      border-color: var(--gold)
+    }
+
+    .fchip i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold)
+    }
+
+    .fchip.ag i {
+      background: var(--silver)
+    }
+
+    .fchip.a {
+      top: 9%;
+      left: 6%
+    }
+
+    .fchip.b {
+      bottom: 9%;
+      right: 6%;
+      animation-delay: -3.5s
+    }
+
+    @keyframes flt {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-7px)
+      }
+    }
+
+    @media (max-width:900px) {
+      .hero .w {
+        grid-template-columns: minmax(0, 1fr)
+      }
+
+      .stage3d {
+        justify-self: center;
+        max-width: 440px
+      }
+    }
+
+    /* faixa animada */
+    .mq {
+      border-block: 1px solid var(--hair);
+      overflow: hidden;
+      padding-block: 20px;
+      background: var(--bg-2);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)
+    }
+
+    .mq-t {
+      display: flex;
+      gap: 44px;
+      width: max-content;
+      animation: mq 46s linear infinite
+    }
+
+    .mq:hover .mq-t {
+      animation-play-state: paused
+    }
+
+    .mq span {
+      font: italic var(--sw) 1.5rem/1 var(--serif);
+      color: var(--muted);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 44px
+    }
+
+    .mq span::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      transform: rotate(45deg)
+    }
+
+    @keyframes mq {
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    /* títulos de seção */
+    .sec-h {
+      display: grid;
+      gap: 18px;
+      margin-bottom: clamp(34px, 5vw, 60px)
+    }
+
+    .sec-h h2 {
+      font-size: clamp(2.1rem, 4.8vw, 3.8rem)
+    }
+
+    /* coleções */
+    .cols {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(16px, 2.4vw, 32px)
+    }
+
+    .pan {
+      --c: var(--gold);
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--r);
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--hair);
+      transition: border-color .35s, transform .35s
+    }
+
+    .pan:hover {
+      border-color: color-mix(in srgb, var(--c) 70%, transparent);
+      transform: translateY(-4px)
+    }
+
+    .pan.ag {
+      --c: var(--silver)
+    }
+
+    .pan-art {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      background: radial-gradient(ellipse at 50% 15%, color-mix(in srgb, var(--c) 18%, var(--surface-2)), var(--surface-2) 78%)
+    }
+
+    .pan-art div {
+      aspect-ratio: 1/1;
+      padding: 9%;
+      transition: transform .5s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .pan-art div:hover {
+      transform: translateY(-8px) scale(1.06)
+    }
+
+    .pan-art svg {
+      width: 100%;
+      height: 100%;
+      display: block
+    }
+
+    .pan-b {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: clamp(24px, 3vw, 38px);
+      flex: 1
+    }
+
+    .pan h3 {
+      font-size: clamp(1.9rem, 3vw, 2.5rem)
+    }
+
+    .pan .teor {
+      font: 500 11.5px/1 var(--sans);
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--c)
+    }
+
+    .pan p {
+      color: var(--muted);
+      max-width: 52ch
+    }
+
+    .pan ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    .pan li {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--hair);
+      font-size: .85rem
+    }
+
+    .pan .btn {
+      align-self: flex-start;
+      margin-top: auto;
+      border-color: var(--c)
+    }
+
+    .pan.ag .btn.solid {
+      background: linear-gradient(135deg, #fff, var(--silver) 55%, #7B8892);
+      border-color: transparent
+    }
+
+    @media (max-width:760px) {
+      .cols {
+        grid-template-columns: minmax(0, 1fr)
+      }
+    }
+
+    /* catálogo */
+    #catalogo {
+      background: var(--bg-2);
+      border-block: 1px solid var(--hair)
+    }
+
+    .cat-wrap {
+      --metal: var(--gold)
+    }
+
+    .cat-wrap[data-metal="prata"] {
+      --metal: var(--silver)
+    }
+
+    .seg {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: 6px;
+      border-radius: 999px;
+      border: 1px solid var(--hair);
+      background: var(--surface);
+      max-width: 560px;
+      margin-bottom: 30px
+    }
+
+    .seg .ind {
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      left: 6px;
+      width: calc(50% - 6px);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--metal) 20%, var(--surface-2));
+      border: 1px solid color-mix(in srgb, var(--metal) 55%, transparent);
+      transition: transform .5s cubic-bezier(.3, .85, .25, 1)
+    }
+
+    .cat-wrap[data-metal="prata"] .ind {
+      transform: translateX(100%)
+    }
+
+    .tab {
+      position: relative;
+      z-index: 1;
+      background: transparent;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 10px;
+      color: var(--muted);
+      transition: color .3s
+    }
+
+    .tab .tn {
+      font: var(--sw) clamp(1.15rem, 3vw, 1.6rem)/1 var(--serif)
+    }
+
+    .tab .ts {
+      font: 500 10.5px/1 var(--sans);
+      letter-spacing: .2em;
+      text-transform: uppercase
+    }
+
+    .tab:hover {
+      color: var(--fg)
+    }
+
+    .tab[aria-selected="true"] {
+      color: var(--metal)
+    }
+
+    .tool {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 26px
+    }
+
+    .tr1 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center
+    }
+
+    .search {
+      position: relative;
+      flex: 1 1 260px
+    }
+
+    .search svg {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none
+    }
+
+    .search input {
+      padding-left: 50px
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    .chip {
+      background: transparent;
+      border: 1px solid var(--hair);
+      border-radius: 999px;
+      padding: 10px 18px;
+      min-height: 44px;
+      font: 500 11.5px/1 var(--sans);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color .25s, background .25s, color .25s, transform .25s
+    }
+
+    .chip small {
+      opacity: .6;
+      margin-left: 7px;
+      font-size: 10.5px;
+      letter-spacing: .04em
+    }
+
+    .chip:hover {
+      border-color: var(--metal);
+      transform: translateY(-1px)
+    }
+
+    .chip[aria-pressed="true"] {
+      background: var(--metal);
+      border-color: var(--metal);
+      color: var(--on-metal)
+    }
+
+    select,
+    input,
+    textarea {
+      font: 400 1rem/1.4 var(--sans);
+      color: var(--fg);
+      background: var(--surface);
+      border: 1px solid var(--hair);
+      border-radius: var(--r-sm);
+      padding: 12px 16px;
+      width: 100%;
+      min-height: 52px
+    }
+
+    select:focus,
+    input:focus,
+    textarea:focus {
+      border-color: var(--gold);
+      outline: none;
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 22%, transparent)
+    }
+
+    .sort {
+      flex: 0 0 auto
+    }
+
+    .sort select {
+      width: auto;
+      min-width: 190px;
+      border-radius: 999px;
+      padding-inline: 22px
+    }
+
+    .count {
+      font-size: .9rem;
+      color: var(--muted);
+      margin-bottom: 22px
+    }
+
+    .grid {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
+      gap: clamp(12px, 2vw, 24px)
+    }
+
+    .card {
+      position: relative;
+      border-radius: var(--r);
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--hair);
+      transition: border-color .3s, transform .4s cubic-bezier(.2, .8, .2, 1), box-shadow .4s;
+      animation: rise .5s both
+    }
+
+    @keyframes rise {
+      from {
+        opacity: .3;
+        transform: translateY(14px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .35s;
+      background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--metal) 24%, transparent), transparent 62%)
+    }
+
+    .card:hover {
+      border-color: color-mix(in srgb, var(--metal) 65%, transparent);
+      transform: translateY(-5px);
+      box-shadow: 0 24px 50px -24px color-mix(in srgb, var(--metal) 40%, transparent)
+    }
+
+    .card:hover::before {
+      opacity: 1
+    }
+
+    .card-hit {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer
+    }
+
+    .art {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 34%, color-mix(in srgb, var(--metal) 17%, var(--surface-2)), var(--surface-2) 74%)
+    }
+
+    .art svg {
+      width: 76%;
+      height: auto;
+      display: block;
+      transition: transform .7s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .7s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .card:hover .art svg,
+    .card:hover .art img {
+      transform: scale(1.07)
+    }
+
+    .art-wrap {
+      position: relative;
+      display: block
+    }
+
+    .qv {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      bottom: 16px;
+      transform: translate(-50%, 10px);
+      opacity: 0;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--hair);
+      background: color-mix(in srgb, var(--bg) 70%, transparent);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      font: 500 10.5px/1 var(--sans);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: opacity .3s, transform .3s;
+      pointer-events: none
+    }
+
+    .card:hover .qv,
+    .card-hit:focus-visible .qv {
+      opacity: 1;
+      transform: translate(-50%, 0)
+    }
+
+    @media (hover:none) {
+      .qv {
+        display: none
+      }
+    }
+
+    .info {
+      display: block;
+      padding: 18px 20px 22px
+    }
+
+    .k {
+      display: block;
+      font: 500 10.5px/1 var(--sans);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .nm {
+      display: block;
+      font: var(--sw) 1.35rem/1.2 var(--serif);
+      margin-top: 10px
+    }
+
+    .mt {
+      display: block;
+      font-size: .85rem;
+      color: var(--muted);
+      margin-top: 6px
+    }
+
+    .pr {
+      display: block;
+      margin-top: 16px;
+      font: 500 1.1rem/1 var(--sans);
+      color: var(--metal);
+      font-variant-numeric: tabular-nums
+    }
+
+    .heart {
+      position: absolute;
+      z-index: 3;
+      top: 12px;
+      right: 12px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--hair);
+      background: color-mix(in srgb, var(--bg) 62%, transparent);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: transform .3s, border-color .3s, color .3s
+    }
+
+    .heart:hover {
+      transform: scale(1.1);
+      border-color: var(--metal)
+    }
+
+    .heart svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      transition: fill .25s
+    }
+
+    .heart[aria-pressed="true"] {
+      color: var(--metal);
+      border-color: var(--metal)
+    }
+
+    .heart[aria-pressed="true"] svg {
+      fill: currentColor;
+      animation: beat .4s
+    }
+
+    @keyframes beat {
+      40% {
+        transform: scale(1.35)
+      }
+    }
+
+    .empty {
+      grid-column: 1/-1;
+      padding: 56px 20px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed var(--hair);
+      border-radius: var(--r)
+    }
+
+    .note {
+      margin-top: 34px;
+      font-size: .85rem;
+      color: var(--muted);
+      max-width: 70ch
+    }
+
+    @media (max-width:560px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .info {
+        padding: 14px 14px 18px
+      }
+
+      .nm {
+        font-size: 1.12rem
+      }
+
+      .sort,
+      .sort select {
+        width: 100%
+      }
+
+      .heart {
+        width: 38px;
+        height: 38px;
+        top: 8px;
+        right: 8px
+      }
+    }
+
+    /* ficha da peça, sobre fundo desfocado */
+    .ov {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+      background: color-mix(in srgb, var(--bg) 46%, transparent);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
+      backdrop-filter: blur(18px) saturate(1.25);
+      padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+      animation: fade .3s both
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .mdl {
+      --metal: var(--gold);
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+      width: 100%;
+      max-width: 1040px;
+      max-height: 100%;
+      overflow: auto;
+      margin: auto;
+      border-radius: 32px;
+      border: 1px solid var(--hair);
+      background: color-mix(in srgb, var(--surface) 84%, transparent);
+      -webkit-backdrop-filter: blur(26px);
+      backdrop-filter: blur(26px);
+      box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .65);
+      animation: pop .45s cubic-bezier(.2, .85, .25, 1) both
+    }
+
+    .mdl[data-metal="prata"] {
+      --metal: var(--silver)
+    }
+
+    @keyframes pop {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(.97)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .stg {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 100%;
+      overflow: hidden;
+      cursor: zoom-in;
+      background: radial-gradient(circle at 50% 34%, color-mix(in srgb, var(--metal) 20%, var(--surface-2)), var(--surface-2) 76%)
+    }
+
+    .stg .zm {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      padding: 12%;
+      transition: transform .35s ease-out
+    }
+
+    .stg .zm svg {
+      width: 100%;
+      max-width: 420px;
+      height: auto
+    }
+
+    .stg .zm img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0
+    }
+
+    .stg.zoom {
+      cursor: zoom-out
+    }
+
+    .stg.zoom .zm {
+      transform: scale(1.9)
+    }
+
+    .hint {
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--bg) 60%, transparent);
+      font: 500 10.5px/1 var(--sans);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      pointer-events: none;
+      white-space: nowrap
+    }
+
+    .nv {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      background: color-mix(in srgb, var(--bg) 60%, transparent)
+    }
+
+    .nv.p {
+      left: 14px
+    }
+
+    .nv.n {
+      right: 14px
+    }
+
+    .mb {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: clamp(26px, 4vw, 48px);
+      min-width: 0
+    }
+
+    .mb h3 {
+      font-size: clamp(2rem, 3.6vw, 2.8rem)
+    }
+
+    .mb .pr {
+      font-size: 1.7rem;
+      margin: 0
+    }
+
+    .mb .dsc {
+      color: var(--muted)
+    }
+
+    .x {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 5;
+      background: color-mix(in srgb, var(--bg) 60%, transparent)
+    }
+
+    .mh {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      align-items: center
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--metal) 55%, transparent);
+      color: var(--metal);
+      font: 500 10.5px/1 var(--sans);
+      letter-spacing: .18em;
+      text-transform: uppercase
+    }
+
+    .spec {
+      margin: 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      font-size: .92rem
+    }
+
+    .spec dt,
+    .spec dd {
+      margin: 0;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--hair)
+    }
+
+    .spec dt {
+      font: 500 10.5px/1.8 var(--sans);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-right: 20px
+    }
+
+    .spec dd {
+      text-align: right
+    }
+
+    .szl {
+      font: 500 10.5px/1 var(--sans);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px
+    }
+
+    .szs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    .sz {
+      min-width: 52px;
+      min-height: 44px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: transparent;
+      border: 1px solid var(--hair);
+      cursor: pointer;
+      font-size: .9rem;
+      transition: border-color .25s, background .25s, color .25s
+    }
+
+    .sz:hover {
+      border-color: var(--metal)
+    }
+
+    .sz[aria-pressed="true"] {
+      background: var(--metal);
+      border-color: var(--metal);
+      color: var(--on-metal)
+    }
+
+    .acts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px
+    }
+
+    .acts .btn {
+      flex: 1 1 170px;
+      --gold: var(--metal)
+    }
+
+    .fv[aria-pressed="true"] {
+      background: color-mix(in srgb, var(--metal) 16%, transparent);
+      border-color: var(--metal);
+      color: var(--metal)
+    }
+
+    .cmp {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--hair);
+      background: color-mix(in srgb, var(--fg) 4%, transparent);
+      text-align: left;
+      width: 100%;
+      cursor: pointer;
+      transition: border-color .25s, transform .25s
+    }
+
+    .cmp:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px)
+    }
+
+    .cmp b {
+      display: block;
+      font: var(--sw) 1.1rem/1.2 var(--serif)
+    }
+
+    .cmp small {
+      display: block;
+      color: var(--muted);
+      font-size: .82rem;
+      margin-top: 4px
+    }
+
+    .cmp span {
+      font: 500 1rem/1 var(--sans);
+      white-space: nowrap
+    }
+
+    .care-m {
+      font-size: .88rem;
+      color: var(--muted);
+      padding-top: 14px;
+      border-top: 1px solid var(--hair)
+    }
+
+    @media (max-width:820px) {
+      .mdl {
+        grid-template-columns: minmax(0, 1fr);
+        border-radius: 26px
+      }
+
+      .stg {
+        min-height: 0;
+        aspect-ratio: 4/3.3
+      }
+
+      .stg .zm {
+        padding: 8%
+      }
+
+      .hint {
+        display: none
+      }
+    }
+
+    /* gaveta da lista */
+    .dov {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      display: flex;
+      justify-content: flex-end;
+      background: color-mix(in srgb, var(--bg) 40%, transparent);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      animation: fade .3s both
+    }
+
+    .dw {
+      display: flex;
+      flex-direction: column;
+      width: min(440px, 100%);
+      height: 100%;
+      padding: max(22px, env(safe-area-inset-top, 0px)) max(22px, env(safe-area-inset-right, 0px)) max(22px, env(safe-area-inset-bottom, 0px)) 22px;
+      background: color-mix(in srgb, var(--surface) 90%, transparent);
+      -webkit-backdrop-filter: blur(26px);
+      backdrop-filter: blur(26px);
+      border-left: 1px solid var(--hair);
+      animation: slide .45s cubic-bezier(.2, .85, .25, 1) both
+    }
+
+    @keyframes slide {
+      from {
+        transform: translateX(40px);
+        opacity: 0
+      }
+
+      to {
+        transform: none;
+        opacity: 1
+      }
+    }
+
+    .dh {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px
+    }
+
+    .dh h3 {
+      font-size: 1.9rem
+    }
+
+    .dl {
+      flex: 1;
+      overflow: auto;
+      display: grid;
+      align-content: start;
+      gap: 10px
+    }
+
+    .di {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      padding: 10px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--hair);
+      background: color-mix(in srgb, var(--fg) 3%, transparent)
+    }
+
+    .di .th {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--surface-2);
+      overflow: hidden
+    }
+
+    .di .th svg {
+      width: 80%;
+      height: auto
+    }
+
+    .di .th img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .di b {
+      display: block;
+      font: var(--sw) 1.05rem/1.2 var(--serif)
+    }
+
+    .di small {
+      display: block;
+      color: var(--muted);
+      font-size: .8rem
+    }
+
+    .di .rm {
+      width: 38px;
+      height: 38px
+    }
+
+    .dt {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-block: 18px;
+      border-top: 1px solid var(--hair);
+      margin-top: 12px;
+      font-size: .9rem;
+      color: var(--muted)
+    }
+
+    .dt b {
+      font: var(--sw) 1.7rem/1 var(--serif);
+      color: var(--fg)
+    }
+
+    .dd {
+      display: grid;
+      gap: 10px
+    }
+
+    .dm {
+      padding: 40px 12px;
+      text-align: center;
+      color: var(--muted)
+    }
+
+    /* sobre */
+    .about {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: clamp(32px, 6vw, 88px);
+      align-items: start
+    }
+
+    .about h2 {
+      font-size: clamp(2.1rem, 4.8vw, 3.6rem);
+      margin-block: 20px 26px
+    }
+
+    .about .lede+.lede {
+      margin-top: 16px
+    }
+
+    .tw {
+      overflow-x: auto;
+      border: 1px solid var(--hair);
+      border-radius: var(--r);
+      background: var(--surface)
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+      font-size: .92rem
+    }
+
+    caption {
+      caption-side: top;
+      text-align: left;
+      padding: 22px 24px 14px;
+      font: var(--sw) 1.5rem/1.2 var(--serif)
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 15px 24px;
+      border-top: 1px solid var(--hair);
+      vertical-align: top
+    }
+
+    th {
+      font: 500 10.5px/1.4 var(--sans);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    td b {
+      font-weight: 500;
+      color: var(--gold)
+    }
+
+    td.ag b {
+      color: var(--silver)
+    }
+
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: clamp(14px, 2vw, 22px);
+      margin-top: clamp(40px, 6vw, 72px)
+    }
+
+    .bx {
+      padding: clamp(24px, 3vw, 36px);
+      border-radius: var(--r);
+      border: 1px solid var(--hair);
+      background: var(--surface);
+      transition: border-color .3s, transform .3s
+    }
+
+    .bx:hover {
+      border-color: color-mix(in srgb, var(--gold) 55%, transparent);
+      transform: translateY(-3px)
+    }
+
+    .bx.s2 {
+      grid-column: span 2
+    }
+
+    .bx.s3 {
+      grid-column: span 3
+    }
+
+    .bx.s6 {
+      grid-column: span 6
+    }
+
+    .bx h3 {
+      font-size: 1.55rem;
+      margin-bottom: 12px
+    }
+
+    .bx p {
+      color: var(--muted);
+      font-size: .95rem
+    }
+
+    .calc {
+      --m: var(--gold);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(20px, 4vw, 48px);
+      align-items: center
+    }
+
+    .calc[data-t="prata"] {
+      --m: var(--silver)
+    }
+
+    .sg {
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 5px;
+      border-radius: 999px;
+      border: 1px solid var(--hair);
+      margin: 16px 0 22px;
+      gap: 4px
+    }
+
+    .sg button {
+      background: transparent;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 20px;
+      cursor: pointer;
+      font: 500 11px/1 var(--sans);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: background .3s, color .3s
+    }
+
+    .sg button[aria-pressed="true"] {
+      background: var(--m);
+      color: var(--on-metal)
+    }
+
+    input[type=range] {
+      padding: 0;
+      min-height: 30px;
+      background: transparent;
+      border: 0;
+      accent-color: var(--m)
+    }
+
+    .rw {
+      display: flex;
+      justify-content: space-between;
+      font-size: .85rem;
+      color: var(--muted);
+      margin-bottom: 6px
+    }
+
+    .rw b {
+      color: var(--fg);
+      font-weight: 500
+    }
+
+    .res-c {
+      font: var(--sw) clamp(2.4rem, 5vw, 3.6rem)/1 var(--serif);
+      color: var(--m);
+      font-variant-numeric: tabular-nums
+    }
+
+    .res-s {
+      color: var(--muted);
+      font-size: .92rem;
+      margin-top: 10px
+    }
+
+    .bar {
+      height: 10px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      overflow: hidden;
+      margin-top: 22px
+    }
+
+    .bar i {
+      display: block;
+      height: 100%;
+      width: 75%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--m), color-mix(in srgb, var(--m) 55%, #fff));
+      transition: width .5s cubic-bezier(.3, .85, .25, 1)
+    }
+
+    .care {
+      margin-top: clamp(26px, 4vw, 40px);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 40px;
+      list-style: none;
+      padding: 0
+    }
+
+    .care li {
+      padding: 15px 0;
+      border-top: 1px solid var(--hair);
+      font-size: .95rem;
+      color: var(--muted)
+    }
+
+    .care b {
+      color: var(--fg);
+      font-weight: 500
+    }
+
+    @media (max-width:900px) {
+
+      .about,
+      .calc {
+        grid-template-columns: minmax(0, 1fr)
+      }
+
+      .bento {
+        grid-template-columns: minmax(0, 1fr)
+      }
+
+      .bx.s2,
+      .bx.s3,
+      .bx.s6 {
+        grid-column: auto
+      }
+
+      .care {
+        grid-template-columns: minmax(0, 1fr)
+      }
+    }
+
+    /* contato */
+    #contato {
+      background: var(--bg-2);
+      border-top: 1px solid var(--hair)
+    }
+
+    .ct {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+      gap: clamp(24px, 5vw, 72px);
+      align-items: start
+    }
+
+    .ci {
+      margin: 0
+    }
+
+    .ci>div {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 4px 12px;
+      align-items: center;
+      padding: 20px 0;
+      border-top: 1px solid var(--hair)
+    }
+
+    .ci>div:last-child {
+      border-bottom: 1px solid var(--hair)
+    }
+
+    .ci dt {
+      grid-column: 1/-1;
+      font: 500 10.5px/1 var(--sans);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold)
+    }
+
+    .ci dd {
+      margin: 0;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      user-select: all
+    }
+
+    .cp {
+      background: transparent;
+      border: 1px solid var(--hair);
+      border-radius: 999px;
+      padding: 9px 16px;
+      min-height: 38px;
+      font: 500 10.5px/1 var(--sans);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--muted);
+      transition: border-color .2s, color .2s
+    }
+
+    .cp:hover {
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .fm {
+      display: grid;
+      gap: 18px;
+      background: var(--surface);
+      border: 1px solid var(--hair);
+      border-radius: 28px;
+      padding: clamp(24px, 3.6vw, 48px)
+    }
+
+    .fm h3 {
+      font-size: 2rem
+    }
+
+    .fr {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px
+    }
+
+    .fl {
+      display: grid;
+      gap: 8px;
+      min-width: 0
+    }
+
+    .fl label {
+      font: 500 10.5px/1 var(--sans);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical
+    }
+
+    .res {
+      display: grid;
+      gap: 12px;
+      padding: 22px;
+      border: 1px solid var(--gold);
+      border-radius: var(--r-sm);
+      background: var(--bg-2)
+    }
+
+    .res p {
+      font-size: .92rem;
+      color: var(--muted)
+    }
+
+    .res textarea {
+      min-height: 150px;
+      font-size: .92rem
+    }
+
+    @media (max-width:900px) {
+
+      .ct,
+      .fr {
+        grid-template-columns: minmax(0, 1fr)
+      }
+    }
+
+    /* rodapé */
+    footer {
+      border-top: 1px solid var(--hair);
+      padding-block: 52px 56px
+    }
+
+    footer .w {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px 48px;
+      justify-content: space-between;
+      align-items: flex-start
+    }
+
+    .fn {
+      display: flex;
+      gap: 10px 28px;
+      flex-wrap: wrap
+    }
+
+    .fn a {
+      font: 500 11.5px/1 var(--sans);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted)
+    }
+
+    .fn a:hover {
+      color: var(--gold)
+    }
+
+    .fs {
+      flex-basis: 100%;
+      font-size: .82rem;
+      color: var(--muted);
+      border-top: 1px solid var(--hair);
+      padding-top: 22px
+    }
+
+    /* entrada suave das seções, com o estado final sempre visível */
+    @supports (animation-timeline: view()) {
+      .rv {
+        animation: rv linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 40%
+      }
+
+      @keyframes rv {
+        from {
+          opacity: .55;
+          transform: translateY(30px)
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+        animation: none !important
+      }
+
+      .hero h1 em {
+        -webkit-text-fill-color: currentColor
+      }
+    }
+  </style>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="gGold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="200" y2="200">
+        <stop offset="0" stop-color="#F3DDA0" />
+        <stop offset=".42" stop-color="#CDA24E" />
+        <stop offset=".72" stop-color="#E6C77F" />
+        <stop offset="1" stop-color="#8A6624" />
+      </linearGradient>
+      <linearGradient id="gSilver" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="200" y2="200">
+        <stop offset="0" stop-color="#F6F9FB" />
+        <stop offset=".42" stop-color="#BDC7CF" />
+        <stop offset=".72" stop-color="#E4EAEE" />
+        <stop offset="1" stop-color="#78858F" />
+      </linearGradient>
+      <linearGradient id="gGem" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="200" y2="200">
+        <stop offset="0" stop-color="#FFFFFF" />
+        <stop offset=".5" stop-color="#C6D9EA" />
+        <stop offset="1" stop-color="#F4F8FC" />
+      </linearGradient>
+      <radialGradient id="gPearl" cx=".35" cy=".3" r=".85">
+        <stop offset="0" stop-color="#FFFFFF" />
+        <stop offset=".55" stop-color="#EDE6DA" />
+        <stop offset="1" stop-color="#B9AD9C" />
+      </radialGradient>
+    </defs>
+  </svg>
+
+  <header class="hd">
+    <div class="w">
+      <div class="pb">
+        <a class="brand" href="#inicio" aria-label="Orvalle Joalheria, início">
+          <span class="brand-n">ORVALLE</span>
+          <span class="brand-s">Joalheria</span>
+        </a>
+        <nav class="nav" id="nav" aria-label="Principal">
+          <a href="#colecoes">Coleções</a>
+          <a href="#ouro" data-go="ouro">Ouro 18k</a>
+          <a href="#prata" data-go="prata">Prata 925</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <div class="tools">
+          <button class="ib" id="favbtn" type="button" aria-label="Abrir minha lista de interesse">
+            <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M10 17.5s-7-4.4-7-9.4A3.9 3.9 0 0 1 10 5.6a3.9 3.9 0 0 1 7 2.5c0 5-7 9.4-7 9.4z" fill="none"
+                stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" />
+            </svg>
+            <span class="badge" id="badge" hidden>0</span>
+          </button>
+          <button class="ib" id="theme" type="button" aria-label="Alternar tema claro e escuro">
+            <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+              <circle cx="9" cy="9" r="7.5" fill="none" stroke="currentColor" stroke-width="1.3" />
+              <path d="M9 1.5a7.5 7.5 0 0 1 0 15z" fill="currentColor" />
+            </svg>
+          </button>
+          <button class="ib menu-btn" id="menu" type="button" aria-label="Abrir menu" aria-expanded="false"
+            aria-controls="nav">
+            <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true">
+              <path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" stroke-width="1.3" />
+            </svg>
+          </button>
+        </div>
+        <span class="prog" id="prog"></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="w">
+        <div>
+          <p class="eyebrow">Joalheria · Ouro 18k · Prata 925</p>
+          <h1>Joias para uma <em>vida inteira.</em></h1>
+          <p class="lede">Ouro 18k e prata 925 com punção de teor em cada peça. Correntes, anéis e relógios escolhidos
+            um a um, com atendimento reservado.</p>
+          <div class="cta">
+            <a class="btn solid" href="#ouro" data-go="ouro">Ver o catálogo</a>
+            <a class="btn ghost" href="#contato">Falar com a loja</a>
+          </div>
+          <div class="marks" aria-label="Teores trabalhados">
+            <div class="mark"><b>750</b><span>Ouro 18k<br>75% de ouro puro</span></div>
+            <div class="mark"><b>925</b><span>Prata de lei<br>92,5% de prata pura</span></div>
+          </div>
+        </div>
+        <div class="stage3d">
+          <div class="frame" id="frame">
+            <span id="hero-art"></span>
+            <a class="fchip a" href="#ouro" data-go="ouro"><i></i>Ouro 18k · 750</a>
+            <a class="fchip b ag" href="#prata" data-go="prata"><i></i>Prata 925</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="mq" aria-hidden="true">
+      <div class="mq-t" id="mq"></div>
+    </div>
+
+    <section id="colecoes">
+      <div class="w rv">
+        <div class="sec-h">
+          <p class="eyebrow">Coleções</p>
+          <h2>Dois metais, o mesmo rigor.</h2>
+          <p class="lede">Cada coleção reúne as mesmas categorias de peças, para que a escolha dependa do tom, do uso e
+            do orçamento.</p>
+        </div>
+        <div class="cols">
+          <article class="pan au">
+            <div class="pan-art" id="trio-ouro"></div>
+            <div class="pan-b">
+              <span class="teor">Teor 750</span>
+              <h3>Ouro 18k</h3>
+              <p>Três partes de ouro puro em cada quatro, ligadas a prata e cobre. A liga dá resistência ao uso diário e
+                o tom quente que só o ouro tem.</p>
+              <ul>
+                <li>Correntes</li>
+                <li>Anéis</li>
+                <li>Relógios</li>
+                <li>Brincos</li>
+                <li>Pulseiras</li>
+                <li>Pingentes</li>
+              </ul>
+              <a class="btn solid" href="#ouro" data-go="ouro">Ver ouro 18k</a>
+            </div>
+          </article>
+          <article class="pan ag">
+            <div class="pan-art" id="trio-prata"></div>
+            <div class="pan-b">
+              <span class="teor">Teor 925</span>
+              <h3>Prata 925</h3>
+              <p>A prata de lei tem 92,5% de prata pura e o restante em cobre. Fica firme para o uso e mantém o brilho
+                frio e limpo, com preço acessível.</p>
+              <ul>
+                <li>Correntes</li>
+                <li>Anéis</li>
+                <li>Relógios</li>
+                <li>Brincos</li>
+                <li>Pulseiras</li>
+                <li>Pingentes</li>
+              </ul>
+              <a class="btn solid" href="#prata" data-go="prata">Ver prata 925</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalogo">
+      <div class="w">
+        <div class="sec-h">
+          <p class="eyebrow">Catálogo</p>
+          <h2>Escolha o metal e a peça.</h2>
+        </div>
+        <div class="cat-wrap" id="catwrap" data-metal="ouro">
+          <div class="seg" role="tablist" aria-label="Metal">
+            <span class="ind" aria-hidden="true"></span>
+            <button class="tab" role="tab" id="tab-ouro" aria-selected="true" aria-controls="painel" data-metal="ouro"
+              type="button"><span class="tn">Ouro 18k</span><span class="ts">750</span></button>
+            <button class="tab" role="tab" id="tab-prata" aria-selected="false" aria-controls="painel"
+              data-metal="prata" tabindex="-1" type="button"><span class="tn">Prata 925</span><span
+                class="ts">925</span></button>
+          </div>
+          <div id="painel" role="tabpanel" aria-labelledby="tab-ouro">
+            <div class="tool">
+              <div class="tr1">
+                <div class="search">
+                  <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+                    <circle cx="8" cy="8" r="5.5" fill="none" stroke="currentColor" stroke-width="1.4" />
+                    <path d="M12.2 12.2L16 16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+                  </svg>
+                  <label for="q" class="sr"
+                    style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Buscar
+                    peça</label>
+                  <input id="q" type="search" placeholder="Buscar peça, como solitário ou groumet" autocomplete="off">
+                </div>
+                <div class="sort"><label for="sort"
+                    style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Ordenar</label>
+                  <select id="sort">
+                    <option value="dest">Destaques</option>
+                    <option value="menor">Menor preço</option>
+                    <option value="maior">Maior preço</option>
+                  </select>
+                </div>
+              </div>
+              <div class="chips" id="chips" role="group" aria-label="Categoria"></div>
+            </div>
+            <p class="count" id="count" aria-live="polite"></p>
+            <ul class="grid" id="grid"></ul>
+            <p class="note">As peças, os valores e as medidas deste catálogo são exemplos de demonstração. Os valores
+              variam com a cotação do metal e o peso final da peça.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="w">
+        <div class="about rv">
+          <div>
+            <p class="eyebrow">Sobre a loja</p>
+            <h2>Joalheria de ouro 18k e prata 925.</h2>
+            <p class="lede">A Orvalle trabalha com dois metais e trata os dois com o mesmo rigor. Cada peça chega com
+              punção de teor, acabamento revisado à mão e atendimento reservado, do primeiro contato até a entrega.</p>
+            <p class="lede">O catálogo reúne o que se usa todos os dias e o que se guarda para as ocasiões: correntes,
+              anéis, relógios, brincos, pulseiras e pingentes. Peças sob medida e gravações são combinadas direto com a
+              loja.</p>
+          </div>
+          <div class="tw">
+            <table>
+              <caption>Entenda o teor</caption>
+              <thead>
+                <tr>
+                  <th>Metal</th>
+                  <th>Teor</th>
+                  <th>Composição</th>
+                  <th>Cuidado principal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>Ouro 18k</b></td>
+                  <td>750 milésimos</td>
+                  <td>75% de ouro, 25% de prata e cobre</td>
+                  <td>Evitar cloro e produtos de limpeza</td>
+                </tr>
+                <tr>
+                  <td class="ag"><b>Prata 925</b></td>
+                  <td>925 milésimos</td>
+                  <td>92,5% de prata, 7,5% de cobre</td>
+                  <td>Guardar seca e fechada, pois escurece com o ar</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="bento rv">
+          <div class="bx s6">
+            <div class="calc" id="calc" data-t="ouro">
+              <div>
+                <h3>Quanto metal puro tem a sua peça?</h3>
+                <p>Escolha o metal e o peso. A conta usa o teor da punção: 750 milésimos no ouro 18k e 925 na prata.</p>
+                <div class="sg" role="group" aria-label="Metal da peça">
+                  <button type="button" data-t="ouro" aria-pressed="true">Ouro 18k</button>
+                  <button type="button" data-t="prata" aria-pressed="false">Prata 925</button>
+                </div>
+                <div class="rw"><label for="tc-w">Peso da peça</label><b id="tc-wv">8 g</b></div>
+                <input id="tc-w" type="range" min="1" max="60" step="0.5" value="8">
+              </div>
+              <div>
+                <div class="res-c" id="tc-out">6,0 g</div>
+                <p class="res-s" id="tc-txt"></p>
+                <div class="bar" aria-hidden="true"><i id="tc-bar"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="bx s2">
+            <h3>Teor garantido</h3>
+            <p>Toda peça leva a punção do teor, 750 no ouro e 925 na prata, e acompanha certificado de garantia.</p>
+          </div>
+          <div class="bx s2">
+            <h3>Acabamento revisado</h3>
+            <p>Polimento, solda e engaste são conferidos antes de a peça entrar no catálogo.</p>
+          </div>
+          <div class="bx s2">
+            <h3>Atendimento reservado</h3>
+            <p>Você escolhe com calma, pessoalmente ou à distância, e recebe orientação sobre aro, comprimento e
+              cuidados.</p>
+          </div>
+        </div>
+        <ul class="care rv" aria-label="Cuidados com as joias">
+          <li><b>Guarde separadas.</b> Uma peça em cada compartimento evita riscos entre os metais.</li>
+          <li><b>Coloque por último.</b> Perfume, creme e protetor solar vão antes das joias.</li>
+          <li><b>Limpe com flanela.</b> Um pano macio e seco devolve o brilho do dia a dia.</li>
+          <li><b>Retire para nadar e treinar.</b> Cloro, suor e impacto desgastam o metal.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="w">
+        <div class="sec-h">
+          <p class="eyebrow">Contato</p>
+          <h2>Fale com a loja.</h2>
+          <p class="lede">Conte qual peça chamou sua atenção. A mensagem fica pronta para você copiar e enviar pelo
+            canal que preferir.</p>
+        </div>
+        <div class="ct">
+          <dl class="ci">
+            <div>
+              <dt>WhatsApp</dt>
+              <dd id="c-wa">(00) 00000-0000</dd><button class="cp" type="button" data-copy="c-wa">Copiar</button>
+            </div>
+            <div>
+              <dt>E-mail</dt>
+              <dd id="c-em">contato@seudominio.com.br</dd><button class="cp" type="button"
+                data-copy="c-em">Copiar</button>
+            </div>
+            <div>
+              <dt>Endereço</dt>
+              <dd id="c-ad">Rua da Joalheria, 000, Centro</dd><button class="cp" type="button"
+                data-copy="c-ad">Copiar</button>
+            </div>
+            <div>
+              <dt>Horário</dt>
+              <dd>Segunda a sexta, das 9h às 18h<br>Sábado, das 9h às 13h</dd>
+            </div>
+            <div>
+              <dt>Instagram</dt>
+              <dd id="c-ig">@orvallejoias</dd><button class="cp" type="button" data-copy="c-ig">Copiar</button>
+            </div>
+          </dl>
+          <form class="fm" id="form" novalidate>
+            <h3>Pedir uma peça ou tirar uma dúvida</h3>
+            <div class="fr">
+              <div class="fl"><label for="f-nome">Nome</label><input id="f-nome" type="text" autocomplete="name"
+                  required></div>
+              <div class="fl"><label for="f-contato">Telefone ou e-mail</label><input id="f-contato" type="text"
+                  autocomplete="off" required></div>
+            </div>
+            <div class="fl"><label for="f-peca">Peça de interesse</label><select id="f-peca"></select></div>
+            <div class="fl"><label for="f-msg">Mensagem</label><textarea id="f-msg"
+                placeholder="Aro, comprimento, gravação, prazo desejado"></textarea></div>
+            <button class="btn solid" type="submit">Preparar mensagem</button>
+            <div class="res" id="res" hidden>
+              <p>Mensagem pronta. Copie o texto e envie pelo WhatsApp ou pelo e-mail da loja. Nada foi enviado ainda.
+              </p>
+              <textarea id="res-t" readonly aria-label="Mensagem preparada"></textarea>
+              <div><button class="btn ghost sm" type="button" id="res-c">Copiar mensagem</button></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="w">
+      <a class="brand" href="#inicio" aria-label="Voltar ao início"><span class="brand-n">ORVALLE</span><span
+          class="brand-s">Joalheria</span></a>
+      <nav class="fn" aria-label="Rodapé">
+        <a href="#colecoes">Coleções</a><a href="#ouro" data-go="ouro">Ouro 18k</a><a href="#prata"
+          data-go="prata">Prata 925</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a>
+      </nav>
+      <p class="fs">© 2026 Orvalle Joias. Peças, valores e dados de contato desta página são exemplos de demonstração.
+      </p>
+    </div>
+  </footer>
+
+  <div class="ov" id="ov" hidden>
+    <div class="mdl" role="dialog" aria-modal="true" aria-labelledby="m-t" id="mdl" data-metal="ouro">
+      <button class="ib x" id="m-x" type="button" aria-label="Fechar detalhes">
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+          <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.4" />
+        </svg>
+      </button>
+      <div class="stg" id="m-stg">
+        <div class="zm" id="m-art"></div>
+        <button class="ib nv p" id="m-prev" type="button" aria-label="Peça anterior"><svg width="14" height="14"
+            viewBox="0 0 14 14" aria-hidden="true">
+            <path d="M9 1L3 7l6 6" fill="none" stroke="currentColor" stroke-width="1.5" />
+          </svg></button>
+        <button class="ib nv n" id="m-next" type="button" aria-label="Próxima peça"><svg width="14" height="14"
+            viewBox="0 0 14 14" aria-hidden="true">
+            <path d="M5 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" />
+          </svg></button>
+        <span class="hint">Passe o cursor para ampliar</span>
+      </div>
+      <div class="mb">
+        <div class="mh"><span class="pill" id="m-pill"></span><span class="k" id="m-k"></span></div>
+        <h3 id="m-t"></h3>
+        <span class="pr" id="m-p"></span>
+        <p class="dsc" id="m-d"></p>
+        <dl class="spec" id="m-s"></dl>
+        <div id="m-sizes" hidden>
+          <div class="szl" id="m-szl"></div>
+          <div class="szs" id="m-szs" role="group"></div>
+        </div>
+        <div class="acts">
+          <button class="btn solid" type="button" id="m-r">Pedir esta peça</button>
+          <button class="btn ghost fv" type="button" id="m-f" aria-pressed="false">Guardar na lista</button>
+        </div>
+        <button class="cmp" type="button" id="m-c" hidden></button>
+        <p class="care-m" id="m-care"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dov" id="dov" hidden>
+    <aside class="dw" role="dialog" aria-modal="true" aria-labelledby="dw-t">
+      <div class="dh">
+        <h3 id="dw-t">Minha lista</h3><button class="ib" id="dw-x" type="button" aria-label="Fechar lista"><svg
+            width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+            <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.4" />
+          </svg></button>
+      </div>
+      <div class="dl" id="dw-l"></div>
+      <div class="dt"><span>Total estimado</span><b id="dw-t2">R$ 0</b></div>
+      <div class="dd">
+        <button class="btn solid" type="button" id="dw-s">Preparar mensagem com a lista</button>
+        <button class="btn ghost sm" type="button" id="dw-c">Limpar lista</button>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+      var $ = function (id) { return document.getElementById(id) };
+      var fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+      function pf(n) { return Math.round(n * 100) / 100 }
+      function norm(s) { return String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase() }
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ---------- desenhos das peças ---------- */
+      var CH = {
+        cartier: { n: 13, sw: 3, kind: 'cartier', rx: .7, ratio: .55 },
+        curb: { n: 16, sw: 3.4, kind: 'curb', rx: .62, ratio: .5 },
+        box: { n: 26, sw: 2.6, kind: 'box', rx: .55, ratio: 1 }
+      };
+      function curve(n) {
+        var S = 320, P0 = [], L = [0], i, p, prev;
+        function pt(t) { return [28 + 144 * t, 34 + 106 * (1 - Math.pow(2 * t - 1, 2))] }
+        prev = pt(0); P0.push(prev);
+        for (i = 1; i <= S; i++) { p = pt(i / S); L.push(L[i - 1] + Math.hypot(p[0] - prev[0], p[1] - prev[1])); P0.push(p); prev = p }
+        var total = L[S], out = [];
+        for (var k = 0; k < n; k++) {
+          var tg = total * (k + .5) / n, j = 1;
+          while (L[j] < tg) j++;
+          var f = (tg - L[j - 1]) / (L[j] - L[j - 1]), a = P0[j - 1], b = P0[j];
+          out.push({ x: a[0] + (b[0] - a[0]) * f, y: a[1] + (b[1] - a[1]) * f, ang: Math.atan2(b[1] - a[1], b[0] - a[0]) * 180 / Math.PI });
+        }
+        return { pts: out, sp: total / n };
+      }
+      function chainInner(o, g) {
+        var c = curve(o.n), s = '';
+        c.pts.forEach(function (q, i) {
+          var rx = c.sp * o.rx, ry = rx * o.ratio, x = pf(q.x), y = pf(q.y), a = q.ang, tr;
+          if (o.kind === 'cartier') {
+            tr = 'rotate(' + pf(a) + ' ' + x + ' ' + y + ')';
+            if (i % 2) { s += '<ellipse cx="' + x + '" cy="' + y + '" rx="' + pf(rx * .9) + '" ry="' + pf(ry * .42) + '" transform="' + tr + '" fill="' + g + '"/>' }
+            else { s += '<ellipse cx="' + x + '" cy="' + y + '" rx="' + pf(rx) + '" ry="' + pf(ry) + '" transform="' + tr + '" fill="none" stroke="' + g + '" stroke-width="' + o.sw + '"/>' }
+          } else if (o.kind === 'curb') {
+            tr = 'rotate(' + pf(a + (i % 2 ? 24 : -24)) + ' ' + x + ' ' + y + ')';
+            s += '<ellipse cx="' + x + '" cy="' + y + '" rx="' + pf(rx) + '" ry="' + pf(ry) + '" transform="' + tr + '" fill="none" stroke="' + g + '" stroke-width="' + o.sw + '"/>';
+          } else {
+            tr = 'rotate(' + pf(a) + ' ' + x + ' ' + y + ')';
+            s += '<rect x="' + pf(x - rx) + '" y="' + pf(y - ry) + '" width="' + pf(rx * 2) + '" height="' + pf(ry * 2) + '" rx="' + pf(ry * .35) + '" transform="' + tr + '" fill="none" stroke="' + g + '" stroke-width="' + o.sw + '"/>';
+          }
+        });
+        return s;
+      }
+      function ringInner(v, g) {
+        var band = v === 'ali' ? 15 : (v === 'chev' ? 11 : 10);
+        var s = '<ellipse cx="100" cy="130" rx="46" ry="48" fill="none" stroke="' + g + '" stroke-width="' + band + '"/>';
+        s += '<ellipse cx="100" cy="130" rx="46" ry="48" transform="translate(-1.5 -2)" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1.6"/>';
+        if (v === 'ali') {
+          s += '<ellipse cx="100" cy="130" rx="38" ry="40.5" fill="none" stroke="#000" stroke-opacity=".2" stroke-width="1.2"/>';
+        } else if (v === 'chev') {
+          s += '<rect x="68" y="50" width="64" height="40" rx="11" fill="' + g + '"/>';
+          s += '<rect x="75" y="57" width="50" height="26" rx="7" fill="none" stroke="#000" stroke-opacity=".25" stroke-width="1.5"/>';
+          s += '<rect x="68" y="50" width="64" height="40" rx="11" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="1.2"/>';
+        } else {
+          s += '<rect x="91" y="68" width="18" height="12" rx="3" fill="' + g + '"/>';
+          s += '<path d="M86 70L82 56M114 70L118 56" stroke="' + g + '" stroke-width="3" fill="none" stroke-linecap="round"/>';
+          s += '<polygon points="100,32 121,49 100,73 79,49" fill="url(#gGem)" stroke="' + g + '" stroke-width="1.6" stroke-linejoin="round"/>';
+          s += '<path d="M79 49H121M100 32L89 49L100 73L111 49Z" fill="none" stroke="#7FA0C0" stroke-opacity=".55" stroke-width=".9"/>';
+        }
+        return s;
+      }
+      var DIAL = { marfim: ['#F2ECDC', '#2B2A26'], verde: ['#16352B', '#EAD9A6'], preto: ['#0F1214', '#E8E8E8'], azul: ['#14253F', '#E6EAF2'], prata: ['#E6E9EC', '#22292E'] };
+      function watchInner(strap, dial, g) {
+        var d = DIAL[dial] || DIAL.marfim, s = '', i, a, x1, y1, x2, y2;
+        if (strap === 'couro') {
+          s += '<rect x="80" y="4" width="40" height="56" rx="6" fill="#2A211B"/><rect x="80" y="140" width="40" height="56" rx="6" fill="#2A211B"/>';
+          s += '<path d="M85 8V56M115 8V56M85 144V192M115 144V192" stroke="#9A8168" stroke-width="1" stroke-dasharray="2.5 3" fill="none"/>';
+        } else {
+          s += '<rect x="80" y="4" width="40" height="56" rx="5" fill="' + g + '"/><rect x="80" y="140" width="40" height="56" rx="5" fill="' + g + '"/>';
+          for (i = 1; i < 5; i++) { s += '<path d="M80 ' + (4 + i * 11) + 'H120M80 ' + (140 + i * 11) + 'H120" stroke="#000" stroke-opacity=".28" stroke-width="1.2"/>' }
+        }
+        s += '<rect x="144" y="95" width="9" height="10" rx="2" fill="' + g + '"/>';
+        s += '<circle cx="100" cy="100" r="48" fill="' + g + '"/>';
+        s += '<circle cx="100" cy="100" r="42" fill="none" stroke="#000" stroke-opacity=".22" stroke-width="1.6"/>';
+        s += '<circle cx="100" cy="100" r="38" fill="' + d[0] + '"/>';
+        for (i = 0; i < 12; i++) {
+          a = i * Math.PI / 6;
+          var r1 = i % 3 === 0 ? 27 : 31;
+          x1 = pf(100 + r1 * Math.sin(a)); y1 = pf(100 - r1 * Math.cos(a)); x2 = pf(100 + 34 * Math.sin(a)); y2 = pf(100 - 34 * Math.cos(a));
+          s += '<path d="M' + x1 + ' ' + y1 + 'L' + x2 + ' ' + y2 + '" stroke="' + d[1] + '" stroke-width="' + (i % 3 === 0 ? 2.2 : 1.2) + '" stroke-linecap="round"/>';
+        }
+        s += '<path d="M100 100L84.4 91" stroke="' + d[1] + '" stroke-width="3" stroke-linecap="round"/>';
+        s += '<path d="M100 100L122.5 87" stroke="' + d[1] + '" stroke-width="2" stroke-linecap="round"/>';
+        s += '<circle cx="100" cy="100" r="2.8" fill="' + d[1] + '"/>';
+        return s;
+      }
+      function earInner(v, g) {
+        var one;
+        if (v === 'argola' || v === 'torcida') {
+          one = '<ellipse cx="62" cy="104" rx="26" ry="34" fill="none" stroke="' + g + '" stroke-width="6"/>';
+          if (v === 'torcida') { one += '<ellipse cx="62" cy="104" rx="26" ry="34" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="6" stroke-dasharray="2.5 5"/>' }
+          one += '<ellipse cx="62" cy="104" rx="26" ry="34" transform="translate(-1.5 -1.5)" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="1.4"/>';
+        } else {
+          one = '<circle cx="62" cy="42" r="7" fill="' + g + '"/><path d="M62 48V66" stroke="' + g + '" stroke-width="2.6" fill="none"/>';
+          if (v === 'perola') {
+            one += '<rect x="55" y="64" width="14" height="10" rx="3" fill="' + g + '"/><circle cx="62" cy="96" r="21" fill="url(#gPearl)"/>';
+          } else {
+            one += '<path d="M62 66C84 96 84 126 62 146C40 126 40 96 62 66Z" fill="url(#gGem)" stroke="' + g + '" stroke-width="3" stroke-linejoin="round"/>';
+            one += '<path d="M62 66V146M50 106H74" stroke="#7FA0C0" stroke-opacity=".5" stroke-width=".9" fill="none"/>';
+          }
+        }
+        return '<g>' + one + '</g><g transform="translate(200 0) scale(-1 1)">' + one + '</g>';
+      }
+      function braceInner(v, g) {
+        var sw = v === 'port' ? 9 : 4, dash = v === 'port' ? '15 5' : '7 3';
+        var s = '<ellipse cx="100" cy="108" rx="72" ry="40" fill="none" stroke="' + g + '" stroke-width="' + sw + '" stroke-dasharray="' + dash + '" stroke-linecap="round"/>';
+        s += '<ellipse cx="100" cy="108" rx="72" ry="40" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="1.4" stroke-dasharray="' + dash + '" stroke-linecap="round" transform="translate(0 -2)"/>';
+        s += '<circle cx="172" cy="108" r="7" fill="none" stroke="' + g + '" stroke-width="3"/>';
+        return s;
+      }
+      function pendInner(g) {
+        var s = '<path d="M42 6L100 72M158 6L100 72" stroke="' + g + '" stroke-width="2.4" stroke-dasharray="3.5 2.5" fill="none"/>';
+        s += '<circle cx="100" cy="80" r="8" fill="none" stroke="' + g + '" stroke-width="3"/>';
+        s += '<circle cx="100" cy="124" r="36" fill="' + g + '"/>';
+        s += '<circle cx="100" cy="124" r="30" fill="none" stroke="#000" stroke-opacity=".22" stroke-width="1.5"/>';
+        s += '<circle cx="100" cy="124" r="25" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1"/>';
+        s += '<path d="M100 108L106 124L100 140L94 124Z" fill="#000" fill-opacity=".22"/>';
+        return s;
+      }
+      function artInner(a, mt) {
+        var g = mt === 'ouro' ? 'url(#gGold)' : 'url(#gSilver)', p = a.split(':'), k = p[0], v = p[1];
+        if (k === 'ch') return chainInner(CH[v], g);
+        if (k === 'ring') return ringInner(v, g);
+        if (k === 'w') return watchInner(v, p[2], g);
+        if (k === 'er') return earInner(v, g);
+        if (k === 'br') return braceInner(v, g);
+        return pendInner(g);
+      }
+      function art(a, mt) { return '<svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">' + artInner(a, mt) + '</svg>' }
+
+      /* Fotos reais: associe a referência da peça ao arquivo da foto, por exemplo
+         PHOTOS['OU-CO-014']='fotos/OU-CO-014.jpg'. Sem foto, a peça usa o desenho. */
+      var PHOTOS = {};
+      function pic(p) {
+        if (PHOTOS[p.r]) { return '<img src="' + PHOTOS[p.r] + '" alt="' + p.n + ' em ' + MLAB[p.mt] + '" loading="lazy" decoding="async" data-ref="' + p.r + '">' }
+        return art(p.a, p.mt);
+      }
+      document.addEventListener('error', function (e) {
+        var t = e.target;
+        if (t && t.tagName === 'IMG' && t.getAttribute('data-ref')) {
+          var q = P.filter(function (x) { return x.r === t.getAttribute('data-ref') })[0];
+          if (q) t.outerHTML = art(q.a, q.mt);
+        }
+      }, true);
+
+      /* ---------- dados ---------- */
+      var CATS = [['todos', 'Todas'], ['corrente', 'Correntes'], ['anel', 'Anéis'], ['relogio', 'Relógios'], ['brinco', 'Brincos'], ['pulseira', 'Pulseiras'], ['pingente', 'Pingentes']];
+      var CLAB = { corrente: 'Corrente', anel: 'Anel', relogio: 'Relógio', brinco: 'Brincos', pulseira: 'Pulseira', pingente: 'Pingente' };
+      var MLAB = { ouro: 'Ouro 18k', prata: 'Prata 925' };
+      var SIZES = {
+        anel: ['Aro', ['12', '14', '16', '18', '20', '22', '24']],
+        corrente: ['Comprimento', ['40 cm', '45 cm', '50 cm', '60 cm']],
+        pulseira: ['Comprimento', ['17 cm', '19 cm', '21 cm']]
+      };
+      var CARE = {
+        ouro: 'Cuidado com o ouro 18k: evite cloro e produtos de limpeza, e limpe com flanela macia. Riscos leves saem com polimento na loja.',
+        prata: 'Cuidado com a prata 925: guarde seca e fechada, longe da umidade. O escurecimento natural sai com flanela própria para prata.'
+      };
+      var P = [
+        { mt: 'ouro', c: 'corrente', r: 'OU-CO-014', n: 'Corrente Cartier', p: 4290, g: '5,2 g', md: '45 cm', a: 'ch:cartier', d: 'Elos ovais alternados, de leitura clássica e caimento leve. Fecho reforçado, próprio para uso diário.', x: [['Espessura', '2,2 mm'], ['Fecho', 'Argola de mola']] },
+        { mt: 'ouro', c: 'corrente', r: 'OU-CO-021', n: 'Corrente Groumet', p: 6980, g: '8,6 g', md: '50 cm', a: 'ch:curb', d: 'Elos achatados e girados, que refletem a luz de forma contínua. Peça de presença, feita para ser vista.', x: [['Largura', '3,5 mm'], ['Fecho', 'Gaveta com trava de segurança']] },
+        { mt: 'ouro', c: 'corrente', r: 'OU-CO-033', n: 'Corrente Veneziana', p: 3190, g: '3,8 g', md: '45 cm', a: 'ch:box', d: 'Elos quadrados e regulares, de caimento firme. Aceita pingente de até 12 mm.', x: [['Espessura', '1,2 mm'], ['Fecho', 'Argola de mola']] },
+        { mt: 'ouro', c: 'anel', r: 'OU-AN-008', n: 'Anel Solitário Lumière', p: 5450, g: '3,1 g', md: 'Aro 12 a 24', a: 'ring:solit', d: 'Diamante de 15 pontos engastado em quatro garras sobre aro fino de ouro 18k. Ajuste de aro sob consulta.', x: [['Pedra', 'Diamante, 0,15 ct'], ['Engaste', 'Quatro garras']] },
+        { mt: 'ouro', c: 'anel', r: 'OU-AN-015', n: 'Aliança Reta Clássica', p: 3960, g: '4,8 g', md: '4 mm, aro 10 a 30', a: 'ring:ali', d: 'Aliança reta com interior anatômico e acabamento polido. Gravação interna sob consulta.', x: [['Largura', '4 mm'], ['Acabamento', 'Polido']] },
+        { mt: 'ouro', c: 'anel', r: 'OU-AN-022', n: 'Anel Chevalier', p: 5290, g: '6,4 g', md: 'Aro 14 a 28', a: 'ring:chev', d: 'Placa oval lisa, própria para gravar iniciais ou um brasão.', x: [['Placa', '12 × 9 mm'], ['Acabamento', 'Polido, bordas foscas']] },
+        { mt: 'ouro', c: 'relogio', r: 'OU-RL-004', n: 'Relógio Régie Feminino', p: 12800, g: '32 g', md: 'Caixa 28 mm', a: 'w:couro:marfim', d: 'Caixa em ouro 18k, mostrador marfim e pulseira de couro. Movimento a quartzo de precisão.', x: [['Movimento', 'Quartzo suíço'], ['Vidro', 'Safira'], ['Resistência', '30 m']] },
+        { mt: 'ouro', c: 'relogio', r: 'OU-RL-009', n: 'Relógio Cadran Masculino', p: 38900, g: '74 g', md: 'Caixa 39 mm', a: 'w:metal:verde', d: 'Caixa e pulseira em ouro 18k, mostrador verde e movimento automático com 40 horas de reserva de marcha.', x: [['Movimento', 'Automático'], ['Vidro', 'Safira'], ['Resistência', '50 m']] },
+        { mt: 'ouro', c: 'brinco', r: 'OU-BR-006', n: 'Brinco Argola Fina', p: 1980, g: '2,4 g o par', md: '20 mm', a: 'er:argola', d: 'Argolas leves e lisas, com fecho de pressão. Servem a qualquer ocasião.', x: [['Fecho', 'Pressão']] },
+        { mt: 'ouro', c: 'brinco', r: 'OU-BR-017', n: 'Brinco Gota com Pérola', p: 2740, g: '3,0 g o par', md: '28 mm', a: 'er:perola', d: 'Pérola cultivada de 7 mm suspensa em haste de ouro 18k.', x: [['Pérola', 'Cultivada, 7 mm'], ['Fecho', 'Tarraxa']] },
+        { mt: 'ouro', c: 'pulseira', r: 'OU-PU-003', n: 'Pulseira Elos Portugueses', p: 4870, g: '6,0 g', md: '19 cm', a: 'br:port', d: 'Elos texturizados em sequência uniforme, com fecho lagosta.', x: [['Largura', '3 mm'], ['Fecho', 'Lagosta']] },
+        { mt: 'ouro', c: 'pingente', r: 'OU-PI-011', n: 'Pingente Medalha Redonda', p: 1650, g: '2,2 g', md: '16 mm', a: 'pd:medalha', d: 'Medalha lisa com argola de fixação, ideal para gravação. Vendida sem corrente.', x: [['Diâmetro', '16 mm'], ['Gravação', 'Sob consulta']] },
+
+        { mt: 'prata', c: 'corrente', r: 'PR-CO-014', n: 'Corrente Cartier', p: 380, g: '9,8 g', md: '50 cm', a: 'ch:cartier', d: 'Elos ovais alternados em prata de lei, com banho de ródio contra o escurecimento.', x: [['Espessura', '2,5 mm'], ['Fecho', 'Argola de mola']] },
+        { mt: 'prata', c: 'corrente', r: 'PR-CO-021', n: 'Corrente Groumet', p: 590, g: '22 g', md: '60 cm', a: 'ch:curb', d: 'Elos achatados e girados, de peso confortável. Uma peça grande para uso sobreposto.', x: [['Largura', '4 mm'], ['Fecho', 'Gaveta com trava']] },
+        { mt: 'prata', c: 'corrente', r: 'PR-CO-033', n: 'Corrente Veneziana', p: 260, g: '4,5 g', md: '45 cm', a: 'ch:box', d: 'Elos quadrados e regulares, de caimento firme. Aceita pingentes de até 15 mm.', x: [['Espessura', '1,4 mm'], ['Fecho', 'Argola de mola']] },
+        { mt: 'prata', c: 'anel', r: 'PR-AN-008', n: 'Anel Solitário Lumière', p: 420, g: '2,6 g', md: 'Aro 10 a 26', a: 'ring:solit', d: 'Zircônia lapidada em quatro garras sobre aro fino. Brilho constante no uso diário.', x: [['Pedra', 'Zircônia, 4 mm'], ['Acabamento', 'Banho de ródio']] },
+        { mt: 'prata', c: 'anel', r: 'PR-AN-015', n: 'Aliança Reta Clássica', p: 290, g: '5,5 g', md: '5 mm, aro 10 a 30', a: 'ring:ali', d: 'Aliança com interior anatômico e acabamento polido.', x: [['Largura', '5 mm'], ['Acabamento', 'Polido']] },
+        { mt: 'prata', c: 'anel', r: 'PR-AN-022', n: 'Anel Chevalier', p: 480, g: '9,5 g', md: 'Aro 14 a 28', a: 'ring:chev', d: 'Placa oval lisa em prata maciça, pronta para receber gravação.', x: [['Placa', '14 × 10 mm'], ['Acabamento', 'Polido']] },
+        { mt: 'prata', c: 'relogio', r: 'PR-RL-004', n: 'Relógio Régie Feminino', p: 2890, g: '30 g', md: 'Caixa 28 mm', a: 'w:couro:prata', d: 'Caixa em prata 925, mostrador prateado e pulseira de couro. Movimento a quartzo.', x: [['Movimento', 'Quartzo'], ['Vidro', 'Mineral'], ['Resistência', '30 m']] },
+        { mt: 'prata', c: 'relogio', r: 'PR-RL-009', n: 'Relógio Cadran Masculino', p: 4650, g: '92 g', md: 'Caixa 41 mm', a: 'w:metal:azul', d: 'Caixa e pulseira em prata 925, mostrador azul e movimento automático.', x: [['Movimento', 'Automático'], ['Vidro', 'Safira'], ['Resistência', '50 m']] },
+        { mt: 'prata', c: 'brinco', r: 'PR-BR-006', n: 'Brinco Argola Fina', p: 290, g: '4,1 g o par', md: '25 mm', a: 'er:torcida', d: 'Argolas com fio torcido, que dá textura e brilho irregular à luz.', x: [['Fecho', 'Pressão']] },
+        { mt: 'prata', c: 'brinco', r: 'PR-BR-017', n: 'Brinco Gota com Pérola', p: 360, g: '3,4 g o par', md: '30 mm', a: 'er:cristal', d: 'Gota de cristal presa a haste de prata 925, com brilho de pedra lapidada.', x: [['Pedra', 'Cristal, 12 mm'], ['Fecho', 'Tarraxa']] },
+        { mt: 'prata', c: 'pulseira', r: 'PR-PU-003', n: 'Pulseira Elos Portugueses', p: 520, g: '11 g', md: '19 cm', a: 'br:port', d: 'Elos texturizados em sequência uniforme, com fecho lagosta.', x: [['Largura', '4 mm'], ['Fecho', 'Lagosta']] },
+        { mt: 'prata', c: 'pingente', r: 'PR-PI-011', n: 'Pingente Medalha Redonda', p: 240, g: '3,6 g', md: '18 mm', a: 'pd:medalha', d: 'Medalha lisa com argola de fixação, ideal para gravação. Vendida sem corrente.', x: [['Diâmetro', '18 mm'], ['Gravação', 'Sob consulta']] }
+      ];
+      P.forEach(function (p, i) { p.id = 'p' + i });
+      function byId(id) { return P.filter(function (q) { return q.id === id })[0] }
+      function twin(p) { return P.filter(function (q) { return q.mt !== p.mt && q.c === p.c && q.n === p.n })[0] }
+
+      /* ---------- estado ---------- */
+      var st = { metal: 'ouro', cat: 'todos', sort: 'dest', q: '' };
+      var favs = [];
+      try { favs = JSON.parse(localStorage.getItem('orvalle-lista') || '[]').filter(function (i) { return byId(i) }) } catch (e) { favs = [] }
+      function saveFavs() { try { localStorage.setItem('orvalle-lista', JSON.stringify(favs)) } catch (e) { } }
+      function isFav(id) { return favs.indexOf(id) > -1 }
+      function setHash(h) { try { history.replaceState(null, '', '#' + h) } catch (e) { } }
+
+      /* ---------- catálogo ---------- */
+      var HEART = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 17.5s-7-4.4-7-9.4A3.9 3.9 0 0 1 10 5.6a3.9 3.9 0 0 1 7 2.5c0 5-7 9.4-7 9.4z" stroke-linejoin="round"/></svg>';
+      function render() {
+        var list = P.filter(function (p) { return p.mt === st.metal });
+        var counts = { todos: list.length };
+        list.forEach(function (p) { counts[p.c] = (counts[p.c] || 0) + 1 });
+        $('chips').innerHTML = CATS.map(function (c) {
+          return '<button class="chip" type="button" data-cat="' + c[0] + '" aria-pressed="' + (st.cat === c[0]) + '">' + c[1] + '<small>' + (counts[c[0]] || 0) + '</small></button>';
+        }).join('');
+        var nq = norm(st.q.trim());
+        var shown = list.filter(function (p) {
+          if (st.cat !== 'todos' && p.c !== st.cat) return false;
+          if (nq && norm(p.n + ' ' + CLAB[p.c] + ' ' + p.r + ' ' + p.d).indexOf(nq) < 0) return false;
+          return true;
+        });
+        if (st.sort === 'menor') shown = shown.slice().sort(function (a, b) { return a.p - b.p });
+        if (st.sort === 'maior') shown = shown.slice().sort(function (a, b) { return b.p - a.p });
+        $('count').textContent = shown.length + (shown.length === 1 ? ' peça' : ' peças') + ' em ' + MLAB[st.metal] + (nq ? ' para "' + st.q.trim() + '"' : '');
+        $('grid').innerHTML = shown.length ? shown.map(function (p, i) {
+          return '<li class="card" style="animation-delay:' + (i * 45) + 'ms">' +
+            '<button class="card-hit" type="button" data-id="' + p.id + '" aria-label="' + p.n + ', ' + fmt.format(p.p) + '. Ver detalhes">' +
+            '<span class="art-wrap"><span class="art">' + pic(p) + '</span><span class="qv">Ver detalhes</span></span>' +
+            '<span class="info"><span class="k">' + CLAB[p.c] + '</span><span class="nm">' + p.n + '</span><span class="mt">' + p.g + ' · ' + p.md + '</span><span class="pr">' + fmt.format(p.p) + '</span></span>' +
+            '</button>' +
+            '<button class="heart" type="button" data-fav="' + p.id + '" aria-pressed="' + isFav(p.id) + '" aria-label="Guardar ' + p.n + ' na lista">' + HEART + '</button>' +
+            '</li>';
+        }).join('') : '<li class="empty">Nenhuma peça encontrada. Tente outra palavra ou escolha outra categoria.</li>';
+      }
+      function setMetal(m, scroll) {
+        st.metal = m; st.cat = 'todos';
+        $('catwrap').setAttribute('data-metal', m);
+        ['ouro', 'prata'].forEach(function (k) {
+          var t = $('tab-' + k), on = k === m;
+          t.setAttribute('aria-selected', on);
+          t.tabIndex = on ? 0 : -1;
+        });
+        $('painel').setAttribute('aria-labelledby', 'tab-' + m);
+        render();
+        if (scroll) { $('catalogo').scrollIntoView({ behavior: 'smooth', block: 'start' }) }
+      }
+      document.querySelectorAll('.tab').forEach(function (t) {
+        t.addEventListener('click', function () { var m = t.getAttribute('data-metal'); setMetal(m, false); setHash(m) });
+        t.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+            var m = st.metal === 'ouro' ? 'prata' : 'ouro'; setMetal(m, false); setHash(m); $('tab-' + m).focus(); e.preventDefault();
+          }
+        });
+      });
+      $('chips').addEventListener('click', function (e) {
+        var b = e.target.closest('.chip'); if (!b) return;
+        st.cat = b.getAttribute('data-cat'); render();
+        var again = document.querySelector('.chip[data-cat="' + st.cat + '"]'); if (again) again.focus();
+      });
+      $('sort').addEventListener('change', function () { st.sort = this.value; render() });
+      $('q').addEventListener('input', function () { st.q = this.value; render() });
+      $('grid').addEventListener('click', function (e) {
+        var h = e.target.closest('.heart');
+        if (h) { toggleFav(h.getAttribute('data-fav')); return }
+        var b = e.target.closest('.card-hit'); if (!b) return;
+        openModal(b.getAttribute('data-id'), b);
+      });
+      $('grid').addEventListener('pointermove', function (e) {
+        var c = e.target.closest('.card'); if (!c) return;
+        var r = c.getBoundingClientRect();
+        c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+
+      /* ---------- favoritos e gaveta ---------- */
+      function toggleFav(id) {
+        var i = favs.indexOf(id);
+        if (i > -1) favs.splice(i, 1); else favs.push(id);
+        saveFavs(); syncFavs();
+      }
+      function syncFavs() {
+        document.querySelectorAll('.heart').forEach(function (h) { h.setAttribute('aria-pressed', isFav(h.getAttribute('data-fav'))) });
+        var b = $('badge'); b.textContent = favs.length; b.hidden = !favs.length;
+        $('favbtn').setAttribute('aria-label', 'Abrir minha lista de interesse, ' + favs.length + (favs.length === 1 ? ' peça' : ' peças'));
+        if (cur) { $('m-f').setAttribute('aria-pressed', isFav(cur.id)); $('m-f').textContent = isFav(cur.id) ? 'Na minha lista' : 'Guardar na lista' }
+        if (!$('dov').hidden) renderDrawer();
+        refreshSelect();
+      }
+      function renderDrawer() {
+        var l = $('dw-l');
+        if (!favs.length) {
+          l.innerHTML = '<p class="dm">Sua lista está vazia. Toque no coração de uma peça para guardá-la aqui.</p>';
+        } else {
+          l.innerHTML = favs.map(function (id) {
+            var p = byId(id);
+            return '<div class="di"><span class="th">' + pic(p) + '</span><span><b>' + p.n + '</b><small>' + MLAB[p.mt] + ' · ' + fmt.format(p.p) + '</small></span>' +
+              '<button class="ib rm" type="button" data-rm="' + id + '" aria-label="Remover ' + p.n + ' da lista"><svg width="12" height="12" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5"/></svg></button></div>';
+          }).join('');
+        }
+        var tot = favs.reduce(function (s, id) { return s + byId(id).p }, 0);
+        $('dw-t2').textContent = fmt.format(tot);
+        $('dw-s').disabled = !favs.length; $('dw-c').disabled = !favs.length;
+      }
+      var drawerFocus = null;
+      function openDrawer() {
+        drawerFocus = document.activeElement;
+        renderDrawer(); $('dov').hidden = false;
+        try { document.body.style.overflow = 'hidden' } catch (e) { }
+        $('dw-x').focus();
+      }
+      function closeDrawer() {
+        $('dov').hidden = true;
+        try { document.body.style.overflow = '' } catch (e) { }
+        if (drawerFocus && drawerFocus.focus) drawerFocus.focus();
+      }
+      $('favbtn').addEventListener('click', openDrawer);
+      $('dw-x').addEventListener('click', closeDrawer);
+      $('dov').addEventListener('click', function (e) { if (e.target === $('dov')) closeDrawer() });
+      $('dw-l').addEventListener('click', function (e) {
+        var r = e.target.closest('[data-rm]'); if (r) toggleFav(r.getAttribute('data-rm'));
+      });
+      $('dw-c').addEventListener('click', function () { favs = []; saveFavs(); syncFavs() });
+      $('dw-s').addEventListener('click', function () {
+        closeDrawer();
+        $('f-peca').value = 'lista';
+        $('f-msg').value = 'Gostaria de saber sobre disponibilidade, medidas e prazo das peças da minha lista.';
+        $('contato').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setHash('contato');
+      });
+
+      /* ---------- ficha da peça ---------- */
+      var cur = null, lastFocus = null, pickedSize = '';
+      function navList() { return P.filter(function (p) { return cur && p.mt === cur.mt }) }
+      function fillModal(p) {
+        cur = p; pickedSize = '';
+        $('mdl').setAttribute('data-metal', p.mt);
+        $('m-art').innerHTML = pic(p);
+        $('m-stg').classList.remove('zoom');
+        $('m-pill').textContent = MLAB[p.mt] + ' · ' + (p.mt === 'ouro' ? '750' : '925');
+        $('m-k').textContent = CLAB[p.c];
+        $('m-t').textContent = p.n;
+        $('m-p').textContent = fmt.format(p.p);
+        $('m-p').style.color = p.mt === 'ouro' ? 'var(--gold)' : 'var(--silver)';
+        $('m-d').textContent = p.d;
+        var rows = [['Metal', MLAB[p.mt] + ', teor ' + (p.mt === 'ouro' ? '750' : '925')], ['Peso', p.g], ['Medida', p.md]].concat(p.x).concat([['Referência', p.r]]);
+        $('m-s').innerHTML = rows.map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>' }).join('');
+        var sz = SIZES[p.c];
+        if (sz) {
+          $('m-sizes').hidden = false;
+          $('m-szl').textContent = sz[0];
+          $('m-szs').innerHTML = sz[1].map(function (v) { return '<button class="sz" type="button" data-sz="' + v + '" aria-pressed="false">' + v + '</button>' }).join('');
+        } else { $('m-sizes').hidden = true; $('m-szs').innerHTML = '' }
+        var t = twin(p), c = $('m-c');
+        if (t) {
+          var diff = Math.abs(t.p - p.p);
+          c.hidden = false;
+          c.setAttribute('data-id', t.id);
+          c.innerHTML = '<span><b>Também em ' + MLAB[t.mt] + '</b><small>' + (t.p < p.p ? 'Fica ' + fmt.format(diff) + ' mais em conta' : 'Passa para ' + fmt.format(t.p)) + '</small></span><span>' + fmt.format(t.p) + '</span>';
+        } else { c.hidden = true }
+        $('m-care').textContent = CARE[p.mt];
+        $('m-f').setAttribute('aria-pressed', isFav(p.id));
+        $('m-f').textContent = isFav(p.id) ? 'Na minha lista' : 'Guardar na lista';
+        setHash('p-' + p.r.toLowerCase());
+      }
+      function openModal(id, trigger) {
+        var p = byId(id); if (!p) return;
+        lastFocus = trigger || document.activeElement;
+        fillModal(p);
+        $('ov').hidden = false;
+        try { document.body.style.overflow = 'hidden' } catch (e) { }
+        $('m-x').focus();
+      }
+      function closeModal() {
+        $('ov').hidden = true;
+        try { document.body.style.overflow = '' } catch (e) { }
+        setHash(st.metal);
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+        cur = null;
+      }
+      function step(d) {
+        var l = navList(), i = l.indexOf(cur); if (i < 0) return;
+        var p = l[(i + d + l.length) % l.length];
+        var m = $('mdl');
+        m.style.animation = 'none'; void m.offsetWidth; m.style.animation = '';
+        fillModal(p);
+      }
+      $('m-x').addEventListener('click', closeModal);
+      $('ov').addEventListener('click', function (e) { if (e.target === $('ov')) closeModal() });
+      $('m-prev').addEventListener('click', function (e) { e.stopPropagation(); step(-1) });
+      $('m-next').addEventListener('click', function (e) { e.stopPropagation(); step(1) });
+      $('m-szs').addEventListener('click', function (e) {
+        var b = e.target.closest('.sz'); if (!b) return;
+        var on = b.getAttribute('aria-pressed') === 'true';
+        document.querySelectorAll('.sz').forEach(function (x) { x.setAttribute('aria-pressed', 'false') });
+        pickedSize = on ? '' : b.getAttribute('data-sz');
+        if (!on) b.setAttribute('aria-pressed', 'true');
+      });
+      $('m-f').addEventListener('click', function () { if (cur) toggleFav(cur.id) });
+      $('m-c').addEventListener('click', function () { var t = byId($('m-c').getAttribute('data-id')); if (t) { fillModal(t) } });
+      $('m-r').addEventListener('click', function () {
+        if (!cur) return;
+        var p = cur, sz = pickedSize, lab = SIZES[p.c] ? SIZES[p.c][0].toLowerCase() : '';
+        closeModal();
+        $('f-peca').value = p.id;
+        $('f-msg').value = 'Tenho interesse nesta peça' + (sz ? ' (' + lab + ' ' + sz + ')' : '') + ' e gostaria de saber sobre disponibilidade e prazo.';
+        $('contato').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setHash('contato');
+      });
+      /* zoom com o cursor */
+      var stg = $('m-stg'), zm = $('m-art');
+      stg.addEventListener('pointermove', function (e) {
+        if (e.pointerType !== 'mouse') return;
+        var r = stg.getBoundingClientRect();
+        zm.style.transformOrigin = ((e.clientX - r.left) / r.width * 100) + '% ' + ((e.clientY - r.top) / r.height * 100) + '%';
+        stg.classList.add('zoom');
+      });
+      stg.addEventListener('pointerleave', function () { stg.classList.remove('zoom') });
+      stg.addEventListener('click', function (e) {
+        if (e.target.closest('.nv')) return;
+        var r = stg.getBoundingClientRect();
+        zm.style.transformOrigin = ((e.clientX - r.left) / r.width * 100) + '% ' + ((e.clientY - r.top) / r.height * 100) + '%';
+        stg.classList.toggle('zoom');
+      });
+      document.addEventListener('keydown', function (e) {
+        var box = !$('ov').hidden ? $('mdl') : (!$('dov').hidden ? $('dov').querySelector('.dw') : null);
+        if (!box) return;
+        if (e.key === 'Escape') { if (!$('ov').hidden) closeModal(); else closeDrawer(); return }
+        if (!$('ov').hidden && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { step(e.key === 'ArrowRight' ? 1 : -1); return }
+        if (e.key === 'Tab') {
+          var f = [].slice.call(box.querySelectorAll('button:not([disabled]):not([hidden]),[href],select,input,textarea')).filter(function (n) { return n.offsetParent !== null });
+          if (!f.length) return;
+          var first = f[0], last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault() }
+          else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault() }
+        }
+      });
+
+      /* ---------- formulário e cópia ---------- */
+      function refreshSelect() {
+        var sel = $('f-peca'), v = sel.value;
+        var h = '<option value="">Outro assunto</option>';
+        if (favs.length) h += '<option value="lista">Minha lista de interesse (' + favs.length + (favs.length === 1 ? ' peça' : ' peças') + ')</option>';
+        ['ouro', 'prata'].forEach(function (m) {
+          h += '<optgroup label="' + MLAB[m] + '">' + P.filter(function (p) { return p.mt === m }).map(function (p) { return '<option value="' + p.id + '">' + p.n + ' (' + p.r + ')</option>' }).join('') + '</optgroup>';
+        });
+        sel.innerHTML = h;
+        if (v && sel.querySelector('option[value="' + v + '"]')) sel.value = v;
+      }
+      function copyText(text, btn) {
+        var old = btn.textContent;
+        function msg(t) { btn.textContent = t; setTimeout(function () { btn.textContent = old }, 1800) }
+        try { navigator.clipboard.writeText(text).then(function () { msg('Copiado') }, function () { msg('Selecione e copie') }) }
+        catch (e) { msg('Selecione e copie') }
+      }
+      document.querySelectorAll('[data-copy]').forEach(function (b) {
+        b.addEventListener('click', function () { copyText($(b.getAttribute('data-copy')).textContent, b) });
+      });
+      $('form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var nome = $('f-nome').value.trim(), ct = $('f-contato').value.trim();
+        if (!nome || !ct) { (nome ? $('f-contato') : $('f-nome')).focus(); return }
+        var pid = $('f-peca').value, t = 'Olá, meu nome é ' + nome + '.\n';
+        if (pid === 'lista') {
+          t += 'Peças de interesse:\n' + favs.map(function (id) { var q = byId(id); return '- ' + q.n + ', ' + MLAB[q.mt] + ' (ref. ' + q.r + ')' }).join('\n') + '\n';
+        } else if (pid) {
+          var pc = byId(pid); t += 'Peça de interesse: ' + pc.n + ' em ' + MLAB[pc.mt] + ' (ref. ' + pc.r + ').\n';
+        } else { t += 'Gostaria de falar com a loja.\n' }
+        if ($('f-msg').value.trim()) t += $('f-msg').value.trim() + '\n';
+        t += 'Contato: ' + ct;
+        $('res-t').value = t; $('res').hidden = false;
+        $('res-t').focus();
+      });
+      $('res-c').addEventListener('click', function () { $('res-t').select(); copyText($('res-t').value, this) });
+
+      /* ---------- calculadora de teor ---------- */
+      (function () {
+        var box = $('calc'), w = $('tc-w'), t = 'ouro';
+        function nf(n) { return n.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) }
+        function upd() {
+          var g = parseFloat(w.value), k = t === 'ouro' ? .75 : .925, pure = g * k;
+          $('tc-wv').textContent = nf(g) + ' g';
+          $('tc-out').textContent = nf(pure) + ' g';
+          $('tc-txt').textContent = 'de ' + (t === 'ouro' ? 'ouro' : 'prata') + ' puro em uma peça de ' + nf(g) + ' g em ' + MLAB[t] + '. O restante, ' + nf(g - pure) + ' g, é a liga que dá resistência.';
+          $('tc-bar').style.width = (k * 100) + '%';
+          box.setAttribute('data-t', t);
+          box.querySelectorAll('.sg button').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-t') === t) });
+        }
+        box.querySelectorAll('.sg button').forEach(function (b) { b.addEventListener('click', function () { t = b.getAttribute('data-t'); upd() }) });
+        w.addEventListener('input', upd); upd();
+      })();
+
+      /* ---------- desenhos fixos da página ---------- */
+      $('hero-art').innerHTML = '<svg viewBox="0 0 400 480" style="position:absolute;inset:0;width:100%;height:100%" role="img" aria-label="Corrente groumet e anel solitário em ouro 18k">' +
+        '<g transform="translate(10 -6) scale(1.9)">' + chainInner(CH.curb, 'url(#gGold)') + '</g>' +
+        '<g transform="translate(100 262)">' + ringInner('solit', 'url(#gGold)') + '</g>' +
+        '<text x="30" y="456" style="fill:var(--muted);font:500 11px var(--sans);letter-spacing:.24em">AU · 750</text>' +
+        '<text x="370" y="456" text-anchor="end" style="fill:var(--muted);font:500 11px var(--sans);letter-spacing:.24em">AG · 925</text></svg>';
+      function trio(id, mt, w) {
+        $(id).innerHTML = ['ch:cartier', 'ring:solit', w].map(function (a) { return '<div>' + art(a, mt) + '</div>' }).join('');
+      }
+      trio('trio-ouro', 'ouro', 'w:metal:verde');
+      trio('trio-prata', 'prata', 'w:metal:azul');
+      (function () {
+        var w = ['Ouro 18k', 'Prata 925', 'Correntes', 'Anéis', 'Relógios', 'Brincos', 'Pulseiras', 'Pingentes', 'Punção de teor', 'Atendimento reservado'];
+        var one = w.map(function (x) { return '<span>' + x + '</span>' }).join('');
+        $('mq').innerHTML = one + one;
+      })();
+
+      /* ---------- inclinação do hero e barra de progresso ---------- */
+      (function () {
+        var f = $('frame');
+        if (reduce) return;
+        f.addEventListener('pointermove', function (e) {
+          if (e.pointerType !== 'mouse') return;
+          var r = f.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+          f.style.setProperty('--ry', ((px - .5) * 12) + 'deg');
+          f.style.setProperty('--rx', (-(py - .5) * 12) + 'deg');
+          f.style.setProperty('--gx', (px * 100) + '%');
+          f.style.setProperty('--gy', (py * 100) + '%');
+        });
+        f.addEventListener('pointerleave', function () { f.style.setProperty('--rx', '0deg'); f.style.setProperty('--ry', '0deg') });
+      })();
+      (function () {
+        var tick = false;
+        function upd() {
+          var h = document.documentElement.scrollHeight - window.innerHeight;
+          $('prog').style.setProperty('--p', h > 0 ? Math.min(1, Math.max(0, window.scrollY / h)) : 0);
+          tick = false;
+        }
+        window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(upd) } }, { passive: true });
+        upd();
+      })();
+
+      /* ---------- navegação, tema e hash ---------- */
+      function closeMenu() { $('nav').classList.remove('open'); $('menu').setAttribute('aria-expanded', 'false') }
+      document.querySelectorAll('[data-go]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          var m = a.getAttribute('data-go'); setMetal(m, true); setHash(m);
+          closeMenu();
+        });
+      });
+      $('menu').addEventListener('click', function () {
+        var o = $('nav').classList.toggle('open'); this.setAttribute('aria-expanded', o);
+      });
+      document.querySelectorAll('.nav a:not([data-go])').forEach(function (a) { a.addEventListener('click', closeMenu) });
+      $('theme').addEventListener('click', function () {
+        var root = document.documentElement, c = root.getAttribute('data-theme');
+        if (!c) c = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        var next = c === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('orvalle-tema', next) } catch (e) { }
+      });
+      try { var sv = localStorage.getItem('orvalle-tema'); if (sv === 'light' || sv === 'dark') document.documentElement.setAttribute('data-theme', sv) } catch (e) { }
+      function route() {
+        var h = location.hash.slice(1);
+        if (h === 'ouro' || h === 'prata') { setMetal(h, true); return }
+        if (h.indexOf('p-') === 0) {
+          var ref = h.slice(2), p = P.filter(function (q) { return q.r.toLowerCase() === ref })[0];
+          if (p) { setMetal(p.mt, false); openModal(p.id, null) }
+        }
+      }
+      window.addEventListener('hashchange', route);
+      refreshSelect();
+      render();
+      syncFavs();
+      (function () {
+        var h = location.hash.slice(1);
+        if (h === 'ouro' || h === 'prata') { setMetal(h, false) }
+        else if (h.indexOf('p-') === 0) { route() }
+      })();
+    })();
+  </script>
+
+</body>
+
+</html>
