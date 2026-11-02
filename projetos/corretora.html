@@ -1,0 +1,1089 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Helena Albuquerque | Corretora de imóveis em Fortaleza</title>
+  <meta name="description"
+    content="Corretagem com método em Fortaleza: avaliação de mercado, estratégia de venda e assessoria completa na compra do seu imóvel.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Hanken+Grotesk:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ===== PERSONALIZE AQUI ===== */
+    :root {
+      --abyss: #061F1C;
+      --deep: #0C2F2B;
+      --pine: #134540;
+      --brass: #C2A36B;
+      --brass-2: #E3CD9C;
+      --mist: #E9EFED;
+      --paper: #F5F8F7;
+      --ink: #0D2421;
+      --muted: #5D7571;
+      --line-d: rgba(194, 163, 107, .28);
+      --line-l: rgba(13, 36, 33, .14);
+      --display: 'Bodoni Moda', 'Didot', Georgia, serif;
+      --body: 'Hanken Grotesk', system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--body);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--brass);
+      outline-offset: 4px
+    }
+
+    .wrap {
+      width: min(1200px, 100% - 48px);
+      margin-inline: auto
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font: 600 .98rem var(--body);
+      letter-spacing: .01em;
+      padding: 17px 32px;
+      border: 1px solid var(--brass);
+      cursor: pointer;
+      transition: background .2s, color .2s
+    }
+
+    .btn-brass {
+      background: var(--brass);
+      color: var(--abyss)
+    }
+
+    .btn-brass:hover {
+      background: var(--brass-2)
+    }
+
+    .btn-out {
+      background: transparent;
+      color: var(--brass-2)
+    }
+
+    .btn-out:hover {
+      background: rgba(194, 163, 107, .12)
+    }
+
+    .btn-dark {
+      background: var(--abyss);
+      color: var(--brass-2);
+      border-color: var(--abyss)
+    }
+
+    .btn-dark:hover {
+      background: var(--pine)
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--display);
+      font-weight: 400;
+      letter-spacing: -.01em
+    }
+
+    /* ================= 1. HERO ================= */
+    .hero {
+      background: var(--abyss);
+      color: #fff;
+      position: relative;
+      overflow: hidden
+    }
+
+    .hero::before {
+      /* grade de projeto */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--line-d) 1px, transparent 1px), linear-gradient(90deg, var(--line-d) 1px, transparent 1px);
+      background-size: 96px 96px;
+      opacity: .16;
+      mask-image: radial-gradient(ellipse at 70% 40%, #000, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at 70% 40%, #000, transparent 70%)
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 0;
+      position: relative;
+      z-index: 2;
+      border-bottom: 1px solid var(--line-d)
+    }
+
+    .brand {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      color: #fff
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      font-size: .93rem;
+      color: #bfd0cc
+    }
+
+    .nav-links a:hover {
+      color: var(--brass-2)
+    }
+
+    .nav .btn {
+      padding: 12px 22px;
+      font-size: .9rem
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 80px;
+      align-items: center;
+      padding: 90px 0 100px;
+      position: relative;
+      z-index: 2
+    }
+
+    .creci {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: .9rem;
+      color: var(--brass-2);
+      letter-spacing: .04em;
+      margin-bottom: 30px
+    }
+
+    .creci::before {
+      content: "";
+      width: 56px;
+      height: 1px;
+      background: var(--brass)
+    }
+
+    .hero h1 {
+      font-size: clamp(2.7rem, 5.8vw, 5.2rem);
+      line-height: 1.02;
+      font-weight: 400
+    }
+
+    .hero .lead {
+      margin-top: 30px;
+      max-width: 520px;
+      font-size: 1.15rem;
+      color: #b8cbc6
+    }
+
+    .hero-cta {
+      margin-top: 44px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap
+    }
+
+    .frame {
+      position: relative;
+      max-width: 420px;
+      margin-left: auto;
+      width: 100%;
+      animation: fadein 1.4s ease both
+    }
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+        transform: translateY(24px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .frame::before {
+      content: "";
+      position: absolute;
+      inset: 22px -22px -22px 22px;
+      border: 1px solid var(--brass);
+      z-index: 0
+    }
+
+    .photo {
+      position: relative;
+      z-index: 1;
+      aspect-ratio: 4/5;
+      background: var(--deep);
+      overflow: hidden
+    }
+
+    .photo svg,
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    .caption {
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      padding: 60px 22px 20px;
+      background: linear-gradient(transparent, rgba(6, 31, 28, .92));
+      font-size: .9rem;
+      color: #cfe0db
+    }
+
+    .caption b {
+      display: block;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 1.25rem;
+      color: #fff
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line-d);
+      position: relative;
+      z-index: 2
+    }
+
+    .fact {
+      padding: 28px 24px;
+      border-right: 1px solid var(--line-d)
+    }
+
+    .fact:first-child {
+      padding-left: 0
+    }
+
+    .fact:last-child {
+      border: 0
+    }
+
+    .fact b {
+      display: block;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 1.35rem;
+      color: #fff
+    }
+
+    .fact span {
+      font-size: .88rem;
+      color: #93aaa5
+    }
+
+    /* ================= 2. SOBRE ================= */
+    .about {
+      padding: 120px 0 110px;
+      background: var(--paper)
+    }
+
+    .about-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 90px;
+      align-items: start
+    }
+
+    .sec-label {
+      font-size: .9rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 26px
+    }
+
+    .sec-label::before {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: var(--brass)
+    }
+
+    .about h2 {
+      font-size: clamp(2.1rem, 4vw, 3.4rem);
+      line-height: 1.08;
+      color: var(--abyss)
+    }
+
+    .about .bio {
+      margin-top: 28px;
+      color: #35504b;
+      font-size: 1.08rem;
+      max-width: 520px
+    }
+
+    .about .bio+.bio {
+      margin-top: 16px
+    }
+
+    .cred {
+      margin-top: 40px;
+      border-top: 1px solid var(--line-l)
+    }
+
+    .cred div {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line-l);
+      font-size: .98rem
+    }
+
+    .cred dt {
+      color: var(--muted)
+    }
+
+    .cred dd {
+      font-weight: 500;
+      color: var(--abyss)
+    }
+
+    .panel {
+      background: var(--abyss);
+      color: #fff;
+      padding: 38px 38px 34px
+    }
+
+    .panel h3 {
+      font-size: 1.5rem;
+      color: #fff
+    }
+
+    .panel .sub {
+      font-size: .88rem;
+      color: #8ea6a1;
+      margin: 4px 0 26px
+    }
+
+    .bars {
+      display: grid;
+      gap: 14px
+    }
+
+    .bar {
+      display: grid;
+      grid-template-columns: 118px 1fr 82px;
+      gap: 14px;
+      align-items: center;
+      font-size: .92rem
+    }
+
+    .bar i {
+      display: block;
+      height: 8px;
+      background: rgba(255, 255, 255, .08);
+      position: relative;
+      overflow: hidden
+    }
+
+    .bar i::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--brass);
+      transform-origin: left;
+      transform: scaleX(var(--w));
+      transition: transform 1.3s cubic-bezier(.2, .7, .2, 1)
+    }
+
+    .bars:not(.on) .bar i::after {
+      transform: scaleX(0)
+    }
+
+    .bar span:last-child {
+      text-align: right;
+      color: var(--brass-2)
+    }
+
+    .sim {
+      margin-top: 34px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line-d)
+    }
+
+    .sim h4 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 1.3rem;
+      margin-bottom: 16px
+    }
+
+    .sim-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px
+    }
+
+    .sim label {
+      display: block;
+      font-size: .8rem;
+      color: #8ea6a1;
+      margin-bottom: 5px
+    }
+
+    .sim select,
+    .sim input {
+      width: 100%;
+      padding: 13px 12px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--line-d);
+      color: #fff;
+      font: 500 .98rem var(--body);
+      border-radius: 0
+    }
+
+    .sim select option {
+      color: #000
+    }
+
+    .sim .full {
+      grid-column: 1/-1
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid var(--brass);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap
+    }
+
+    .result small {
+      display: block;
+      color: #8ea6a1;
+      font-size: .8rem
+    }
+
+    .result b {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 1.55rem;
+      color: var(--brass-2)
+    }
+
+    .result a {
+      font-weight: 600;
+      font-size: .92rem;
+      color: var(--brass-2);
+      border-bottom: 1px solid var(--brass)
+    }
+
+    .note {
+      margin-top: 12px;
+      font-size: .78rem;
+      color: #6f8883
+    }
+
+    .method {
+      margin-top: 100px
+    }
+
+    .method h3 {
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      color: var(--abyss);
+      max-width: 560px;
+      line-height: 1.12
+    }
+
+    .m-grid {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      position: relative
+    }
+
+    .m-grid::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 18px;
+      height: 1px;
+      background: var(--line-l)
+    }
+
+    .m-step {
+      padding-right: 30px;
+      position: relative
+    }
+
+    .m-step .dot {
+      width: 37px;
+      height: 37px;
+      border: 1px solid var(--brass);
+      background: var(--paper);
+      display: grid;
+      place-items: center;
+      font-family: var(--display);
+      color: var(--abyss);
+      margin-bottom: 22px;
+      position: relative
+    }
+
+    .m-step h4 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+      color: var(--abyss)
+    }
+
+    .m-step p {
+      font-size: .96rem;
+      color: var(--muted)
+    }
+
+    /* ================= 3. PORTFÓLIO + CONTATO ================= */
+    .close {
+      background: var(--deep);
+      color: #fff;
+      padding: 110px 0 40px
+    }
+
+    .close h2 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.08;
+      max-width: 620px
+    }
+
+    .close .intro {
+      margin-top: 16px;
+      color: #9bb3ad;
+      max-width: 480px
+    }
+
+    .fichas {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px
+    }
+
+    .ficha {
+      background: var(--abyss);
+      border: 1px solid var(--line-d)
+    }
+
+    .ficha .pic {
+      aspect-ratio: 4/3;
+      position: relative;
+      border-bottom: 1px solid var(--line-d)
+    }
+
+    .ficha .pic svg {
+      width: 100%;
+      height: 100%;
+      display: block
+    }
+
+    .ficha .tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--brass);
+      color: var(--abyss);
+      font-size: .78rem;
+      font-weight: 600;
+      padding: 5px 11px
+    }
+
+    .ficha .body {
+      padding: 24px 24px 26px
+    }
+
+    .ficha h3 {
+      font-size: 1.4rem;
+      line-height: 1.15
+    }
+
+    .ficha .loc {
+      color: #8ea6a1;
+      font-size: .92rem;
+      margin: 4px 0 18px
+    }
+
+    .ficha dl div {
+      display: flex;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-top: 1px solid var(--line-d);
+      font-size: .92rem
+    }
+
+    .ficha dt {
+      color: #8ea6a1
+    }
+
+    .ficha dd {
+      font-weight: 500
+    }
+
+    .ficha .val {
+      margin-top: 14px;
+      padding-top: 16px;
+      border-top: 1px solid var(--brass);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px
+    }
+
+    .ficha .val b {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 1.6rem;
+      color: var(--brass-2)
+    }
+
+    .ficha .val a {
+      font-size: .9rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--brass);
+      color: var(--brass-2)
+    }
+
+    .contact {
+      margin-top: 110px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 80px;
+      padding: 60px 0 0;
+      border-top: 1px solid var(--line-d);
+      align-items: start
+    }
+
+    .contact h2 {
+      font-size: clamp(2.2rem, 4.6vw, 3.7rem)
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--line-d)
+    }
+
+    .contact-list a,
+    .contact-list div {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line-d);
+      font-size: 1rem
+    }
+
+    .contact-list span {
+      color: #8ea6a1
+    }
+
+    .contact-list a:hover b {
+      color: var(--brass-2)
+    }
+
+    .contact .btn {
+      width: 100%;
+      margin-top: 26px
+    }
+
+    footer {
+      margin-top: 90px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line-d);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: #6f8883;
+      font-size: .86rem
+    }
+
+    @media(max-width:1000px) {
+      .nav-links {
+        display: none
+      }
+
+      .hero-grid,
+      .about-top,
+      .contact {
+        grid-template-columns: 1fr;
+        gap: 56px
+      }
+
+      .hero-grid {
+        padding: 60px 0 70px
+      }
+
+      .frame {
+        margin: 0 auto 24px;
+        max-width: 340px
+      }
+
+      .facts {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .fact {
+        padding: 22px 16px;
+        border-bottom: 1px solid var(--line-d)
+      }
+
+      .fact:first-child {
+        padding-left: 16px
+      }
+
+      .fact:nth-child(2) {
+        border-right: 0
+      }
+
+      .m-grid {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 44px
+      }
+
+      .m-grid::before {
+        display: none
+      }
+
+      .fichas {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:560px) {
+      .wrap {
+        width: min(1200px, 100% - 36px)
+      }
+
+      .panel {
+        padding: 26px 20px
+      }
+
+      .bar {
+        grid-template-columns: 96px 1fr 72px;
+        gap: 10px;
+        font-size: .85rem
+      }
+
+      .cred div {
+        grid-template-columns: 1fr;
+        gap: 2px
+      }
+
+      .m-grid {
+        grid-template-columns: 1fr
+      }
+
+      .sim-grid {
+        grid-template-columns: 1fr
+      }
+
+      .nav .btn {
+        display: none
+      }
+
+      .hero-cta .btn {
+        width: 100%
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .frame {
+        animation: none
+      }
+
+      .bar i::after {
+        transition: none
+      }
+
+      html {
+        scroll-behavior: auto
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= SESSÃO 1: HERO ================= -->
+  <header class="hero">
+    <div class="wrap">
+      <nav class="nav">
+        <a class="brand" href="#">Helena Albuquerque</a>
+        <div class="nav-links"><a href="#sobre">Sobre</a><a href="#metodo">Método</a><a href="#portfolio">Seleção de
+            imóveis</a><a href="#contato">Contato</a></div>
+        <a class="btn btn-out" href="#contato">Agendar conversa</a>
+      </nav>
+
+      <div class="hero-grid">
+        <div>
+          <div class="creci">CRECI-CE 00000-F</div>
+          <h1>Investir em imóveis em Fortaleza exige critério.</h1>
+          <p class="lead">Avaliação de mercado, análise documental e negociação conduzida com método, para você comprar
+            ou vender com segurança e pelo valor certo.</p>
+          <div class="hero-cta">
+            <a class="btn btn-brass" href="#"
+              data-wa="Olá Helena! Vim pelo seu site e gostaria de agendar uma conversa.">Agendar conversa</a>
+            <a class="btn btn-out" href="#simulador">Simular valor do meu imóvel</a>
+          </div>
+        </div>
+
+        <div class="frame">
+          <div class="photo">
+            <!-- Substitua este SVG pela sua foto: <img src="sua-foto.jpg" alt="Helena Albuquerque"> -->
+            <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" role="img"
+              aria-label="Espaço reservado para a foto da corretora">
+              <defs>
+                <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#0C2F2B" />
+                  <stop offset="1" stop-color="#134540" />
+                </linearGradient>
+              </defs>
+              <rect width="400" height="500" fill="url(#hg)" />
+              <circle cx="300" cy="215" r="40" fill="none" stroke="#C2A36B" stroke-width="1.2" />
+              <g id="hero-bld" fill="none" stroke="#C2A36B" stroke-width="1" opacity=".85"></g>
+              <text x="200" y="140" text-anchor="middle" font-family="Bodoni Moda,Georgia,serif" font-size="96"
+                fill="none" stroke="#E3CD9C" stroke-width="1.2">HA</text>
+            </svg>
+            <div class="caption"><b>Helena Albuquerque</b>Corretora de imóveis em Fortaleza</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="facts">
+        <div class="fact"><b>CRECI-CE</b><span>Registro ativo e regularizado</span></div>
+        <div class="fact"><b>Parecer de avaliação</b><span>PTAM com comparativo de mercado</span></div>
+        <div class="fact"><b>Fortaleza e Eusébio</b><span>Foco em bairros nobres e litoral</span></div>
+        <div class="fact"><b>Atendimento direto</b><span>Você fala comigo, do início ao fim</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= SESSÃO 2: SOBRE + MÉTODO ================= -->
+  <section class="about" id="sobre">
+    <div class="wrap">
+      <div class="about-top">
+        <div>
+          <div class="sec-label">Sobre</div>
+          <h2>Corretagem com método, não com achismo.</h2>
+          <!-- Substitua pelos seus textos reais -->
+          <p class="bio">Sou Helena Albuquerque, corretora de imóveis em Fortaleza. Atuo com dados de mercado, leitura
+            jurídica da documentação e estratégia de negociação, para que cada decisão do meu cliente seja tomada com
+            segurança.</p>
+          <p class="bio">Trabalho com poucos clientes por vez. Isso me permite estudar cada imóvel a fundo, acompanhar
+            todas as visitas e estar disponível em cada etapa, da primeira conversa até a escritura.</p>
+          <dl class="cred">
+            <div>
+              <dt>Registro</dt>
+              <dd>CRECI-CE 00000-F</dd>
+            </div>
+            <div>
+              <dt>Formação</dt>
+              <dd>Técnico em Transações Imobiliárias (TTI)</dd>
+            </div>
+            <div>
+              <dt>Especialização</dt>
+              <dd>Avaliação mercadológica de imóveis (PTAM)</dd>
+            </div>
+            <div>
+              <dt>Atuação</dt>
+              <dd>Compra, venda e investimento em Fortaleza e Eusébio</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="panel" id="simulador">
+          <h3>Valor do m² por bairro</h3>
+          <p class="sub">Valores médios de referência (exemplo). Atualize com seus dados.</p>
+          <div class="bars" id="bars"></div>
+
+          <div class="sim">
+            <h4>Estimativa rápida do seu imóvel</h4>
+            <div class="sim-grid">
+              <div class="full"><label for="s-bairro">Bairro</label><select id="s-bairro"></select></div>
+              <div><label for="s-area">Área privativa (m²)</label><input id="s-area" type="number" min="20" max="1000"
+                  value="100" inputmode="numeric"></div>
+              <div><label for="s-estado">Padrão do imóvel</label>
+                <select id="s-estado">
+                  <option value=".92">Original</option>
+                  <option value="1" selected>Conservado</option>
+                  <option value="1.08">Reformado / alto acabamento</option>
+                </select>
+              </div>
+            </div>
+            <div class="result">
+              <div><small>Faixa estimada de mercado</small><b id="s-res">—</b></div>
+              <a id="s-wa" href="#" target="_blank" rel="noopener">Solicitar avaliação formal</a>
+            </div>
+            <p class="note">Estimativa indicativa, baseada em médias do bairro. O valor real depende de andar, vista,
+              idade, conservação e documentação. A avaliação formal é feita por PTAM.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="method" id="metodo">
+        <div class="sec-label">Método</div>
+        <h3>Quatro etapas para decidir com segurança</h3>
+        <div class="m-grid">
+          <div class="m-step">
+            <div class="dot">1</div>
+            <h4>Diagnóstico</h4>
+            <p>Entendo seu objetivo, prazo e orçamento, ou o que você precisa receber pelo imóvel.</p>
+          </div>
+          <div class="m-step">
+            <div class="dot">2</div>
+            <h4>Avaliação de mercado</h4>
+            <p>Comparo imóveis semelhantes vendidos na região e defino a faixa de preço realista.</p>
+          </div>
+          <div class="m-step">
+            <div class="dot">3</div>
+            <h4>Estratégia e visitas</h4>
+            <p>Seleciono as opções certas, ou apresento o seu imóvel a compradores qualificados.</p>
+          </div>
+          <div class="m-step">
+            <div class="dot">4</div>
+            <h4>Negociação e documentação</h4>
+            <p>Conduzo a proposta, confiro matrícula e certidões e acompanho até a escritura.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SESSÃO 3: IMÓVEIS + CONTATO ================= -->
+  <section class="close" id="portfolio">
+    <div class="wrap">
+      <div class="sec-label" style="color:#8ea6a1">Seleção atual</div>
+      <h2>Imóveis analisados e aprovados por mim</h2>
+      <p class="intro">Cada imóvel passa por conferência de documentação e comparação de preço antes de entrar nesta
+        lista.</p>
+      <div class="fichas" id="fichas"></div>
+
+      <div class="contact" id="contato">
+        <div>
+          <h2>Vamos conversar sobre o seu próximo passo.</h2>
+          <a class="btn btn-brass" href="#"
+            data-wa="Olá Helena! Vim pelo seu site e gostaria de agendar uma conversa.">Chamar no WhatsApp</a>
+        </div>
+        <div class="contact-list">
+          <a href="#" data-wa="Olá Helena!"><span>WhatsApp</span><b>(85) 90000-0000</b></a>
+          <a href="mailto:contato@seudominio.com.br"><span>E-mail</span><b>contato@seudominio.com.br</b></a>
+          <a href="https://instagram.com/seuperfil" target="_blank"
+            rel="noopener"><span>Instagram</span><b>@seuperfil</b></a>
+          <div><span>Atendimento</span><b>Seg a sáb, 8h às 19h</b></div>
+        </div>
+      </div>
+      <footer><span>Helena Albuquerque · Corretora de imóveis · CRECI-CE 00000-F</span><span>Fortaleza, Ceará</span>
+      </footer>
+    </div>
+  </section>
+
+  <script>
+    /* ===== PERSONALIZE: WhatsApp (DDI+DDD+número), preços por m² e imóveis ===== */
+    const WHATS = "5585900000000";
+    const M2 = { "Meireles": 11800, "Mucuripe": 10200, "Aldeota": 9400, "Cocó": 9100, "Dionísio Torres": 8700, "Eusébio": 6300 };
+    const IMOVEIS = [
+      { n: "Apartamento frente mar", b: "Meireles", tag: "Novo", area: 142, q: "3 suítes", v: 3, p: 1790000, a: 0 },
+      { n: "Casa em condomínio", b: "Eusébio", tag: "Oportunidade", area: 260, q: "4 suítes", v: 4, p: 1480000, a: 1 },
+      { n: "Apartamento reformado", b: "Aldeota", tag: "Pronto para morar", area: 96, q: "2 suítes", v: 2, p: 790000, a: 2 }
+    ];
+    const brl = n => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+    const wa = t => `https://wa.me/${WHATS}?text=${encodeURIComponent(t)}`;
+    const $ = s => document.querySelector(s);
+
+    /* desenho arquitetônico em linhas (SVG) */
+    function elevation(seed, w, h) {
+      let g = ""; const floors = [9, 12, 7][seed % 3];
+      const bw = [120, 96, 140][seed % 3], x0 = [70, 150, 50][seed % 3], top = h - 80 - floors * 16;
+      g += `<rect x="${x0}" y="${top}" width="${bw}" height="${h - 80 - top}"/>`;
+      for (let r = 0; r < floors; r++) {
+        const y = top + 8 + r * 16; g += `<line x1="${x0}" y1="${y + 12}" x2="${x0 + bw}" y2="${y + 12}" opacity=".5"/>`;
+        for (let c = x0 + 10; c < x0 + bw - 14; c += 22)g += `<rect x="${c}" y="${y}" width="12" height="9" opacity=".8"/>`;
+      }
+      const x1 = x0 + bw + 26, h2 = floors * 9;
+      g += `<rect x="${x1}" y="${h - 80 - h2}" width="70" height="${h2}"/>`;
+      for (let r = 0; r < Math.floor(h2 / 16); r++)g += `<line x1="${x1}" y1="${h - 80 - h2 + 10 + r * 16}" x2="${x1 + 70}" y2="${h - 80 - h2 + 10 + r * 16}" opacity=".5"/>`;
+      return g;
+    }
+    function sea(w, h) { let s = ""; for (let i = 0; i < 7; i++) { const y = h - 70 + i * 10; s += `<line x1="0" y1="${y}" x2="${w}" y2="${y}" opacity="${.7 - i * .09}"/>` } return s }
+    $("#hero-bld").innerHTML = elevation(1, 400, 500) + sea(400, 500);
+
+    /* barras */
+    const max = Math.max(...Object.values(M2));
+    $("#bars").innerHTML = Object.entries(M2).map(([b, v]) => `<div class="bar"><span>${b}</span><i style="--w:${v / max}"></i><span>${brl(v)}</span></div>`).join("");
+    new IntersectionObserver((e, o) => { if (e[0].isIntersecting) { $("#bars").classList.add("on"); o.disconnect() } }, { threshold: .4 }).observe($("#bars"));
+    if (matchMedia("(prefers-reduced-motion:reduce)").matches) $("#bars").classList.add("on");
+
+    /* simulador */
+    $("#s-bairro").innerHTML = Object.keys(M2).map(b => `<option>${b}</option>`).join("");
+    function sim() {
+      const b = $("#s-bairro").value, a = +$("#s-area").value, f = +$("#s-estado").value;
+      if (!a || a < 20) { $("#s-res").textContent = "—"; return }
+      const est = M2[b] * a * f, lo = est * .94, hi = est * 1.06;
+      $("#s-res").textContent = `${brl(Math.round(lo / 1e4) * 1e4)} a ${brl(Math.round(hi / 1e4) * 1e4)}`;
+      $("#s-wa").href = wa(`Olá Helena! Fiz a simulação no seu site: imóvel no ${b}, ${a} m², faixa estimada ${$("#s-res").textContent}. Gostaria de uma avaliação formal.`);
+    }
+    ["#s-bairro", "#s-area", "#s-estado"].forEach(s => $(s).addEventListener("input", sim)); sim();
+
+    /* fichas técnicas */
+    document.querySelector("#fichas").innerHTML = IMOVEIS.map(it => `
+  <article class="ficha">
+    <div class="pic"><svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs><linearGradient id="f${it.a}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0C2F2B"/><stop offset="1" stop-color="#134540"/></linearGradient></defs>
+      <rect width="400" height="300" fill="url(#f${it.a})"/><circle cx="${300 - it.a * 20}" cy="70" r="30" fill="none" stroke="#C2A36B" stroke-width="1.2"/>
+      <g fill="none" stroke="#C2A36B" stroke-width="1">${elevation(it.a, 400, 300)}${sea(400, 300)}</g></svg>
+      <span class="tag">${it.tag}</span></div>
+    <div class="body"><h3>${it.n}</h3><div class="loc">${it.b}, ${it.b === "Eusébio" ? "CE" : "Fortaleza"}</div>
+      <dl><div><dt>Área privativa</dt><dd>${it.area} m²</dd></div><div><dt>Dormitórios</dt><dd>${it.q}</dd></div>
+      <div><dt>Vagas</dt><dd>${it.v}</dd></div><div><dt>Valor do m²</dt><dd>${brl(Math.round(it.p / it.area))}</dd></div></dl>
+      <div class="val"><b>${brl(it.p)}</b><a href="${wa('Olá Helena! Quero saber mais sobre: ' + it.n + ' (' + it.b + ')')}" target="_blank" rel="noopener">Quero visitar</a></div></div>
+  </article>`).join("");
+
+    document.querySelectorAll("[data-wa]").forEach(a => { a.href = wa(a.dataset.wa); a.target = "_blank"; a.rel = "noopener" });
+  </script>
+</body>
+
+</html>
