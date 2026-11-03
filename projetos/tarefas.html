@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tarefas</title>
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%235B3DF5'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='34' font-weight='800' text-anchor='middle' fill='white'%3E%E2%9C%93%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    /* Layout: aplicativo de uma coluna. Cabeçalho com contagem, formulário de adição, filtros e lista com edição na própria linha. */
+    :root {
+      --bg: #F3F2EE;
+      --fg: #1B1B1F;
+      --muted: #6A6A72;
+      --line: #DAD8D0;
+      --surface: #FFFFFF;
+      --accent: #5B3DF5;
+      --accent-fg: #FFFFFF;
+      --alta: #D6402B;
+      --media: #C98500;
+      --baixa: #2E8B57;
+      --danger: #B3352B;
+      --display: 'Space Grotesk', system-ui, sans-serif;
+      --body: 'IBM Plex Sans', system-ui, sans-serif;
+      color-scheme: light;
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #131316;
+        --fg: #ECECF1;
+        --muted: #9A9AA6;
+        --line: #2B2B32;
+        --surface: #1C1C21;
+        --accent: #9D8BFF;
+        --accent-fg: #131316;
+        --alta: #FF7A63;
+        --media: #E8B04A;
+        --baixa: #5CC48A;
+        --danger: #FF7A63;
+        color-scheme: dark
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #131316;
+      --fg: #ECECF1;
+      --muted: #9A9AA6;
+      --line: #2B2B32;
+      --surface: #1C1C21;
+      --accent: #9D8BFF;
+      --accent-fg: #131316;
+      --alta: #FF7A63;
+      --media: #E8B04A;
+      --baixa: #5CC48A;
+      --danger: #FF7A63;
+      color-scheme: dark
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    [hidden] {
+      display: none !important
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.5;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px))
+    }
+
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding-bottom: 56px
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-block: 18px;
+      flex-wrap: wrap
+    }
+
+    .back {
+      text-decoration: none;
+      display: inline-block;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .82rem;
+      padding: 6px 12px;
+      border-radius: 999px
+    }
+
+    .back:hover {
+      color: var(--fg);
+      border-color: var(--muted)
+    }
+
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(2rem, 6vw, 3rem);
+      letter-spacing: -.03em;
+      line-height: 1;
+      margin: 24px 0 6px
+    }
+
+    .sub {
+      color: var(--muted);
+      margin: 0 0 24px;
+      font-variant-numeric: tabular-nums
+    }
+
+    .add {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 8px;
+      margin-bottom: 16px
+    }
+
+    input[type=text],
+    select {
+      font: inherit;
+      color: var(--fg);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      min-width: 0;
+      width: 100%
+    }
+
+    .btn {
+      font: inherit;
+      font-weight: 500;
+      background: var(--accent);
+      color: var(--accent-fg);
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 20px;
+      cursor: pointer
+    }
+
+    .btn:hover {
+      filter: brightness(1.08)
+    }
+
+    .err {
+      color: var(--danger);
+      font-size: .88rem;
+      margin: -6px 0 12px
+    }
+
+    .filters {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 8px
+    }
+
+    .chip {
+      font: inherit;
+      font-size: .88rem;
+      background: none;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 6px 14px;
+      cursor: pointer
+    }
+
+    .chip[aria-pressed="true"] {
+      background: var(--fg);
+      border-color: var(--fg);
+      color: var(--bg)
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--line)
+    }
+
+    li {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 6px 12px;
+      align-items: center;
+      padding-block: 12px;
+      border-bottom: 1px solid var(--line)
+    }
+
+    input[type=checkbox] {
+      width: 22px;
+      height: 22px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      margin: 0
+    }
+
+    .txt {
+      min-width: 0;
+      overflow-wrap: anywhere
+    }
+
+    li.done .txt {
+      text-decoration: line-through;
+      color: var(--muted)
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-left: 8px;
+      color: var(--c);
+      white-space: nowrap
+    }
+
+    .tag::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--c);
+      margin-right: 5px
+    }
+
+    .p-alta {
+      --c: var(--alta)
+    }
+
+    .p-media {
+      --c: var(--media)
+    }
+
+    .p-baixa {
+      --c: var(--baixa)
+    }
+
+    .acts {
+      display: flex;
+      gap: 4px
+    }
+
+    .ic {
+      font: inherit;
+      font-size: .82rem;
+      background: none;
+      border: 0;
+      color: var(--muted);
+      padding: 6px 8px;
+      border-radius: 6px;
+      cursor: pointer
+    }
+
+    .ic:hover {
+      background: var(--surface);
+      color: var(--fg)
+    }
+
+    .ic.del:hover {
+      color: var(--danger)
+    }
+
+    .editrow {
+      grid-column: 2 / -1;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 6px
+    }
+
+    .empty {
+      padding: 28px 0;
+      color: var(--muted)
+    }
+
+    .foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding-top: 14px;
+      color: var(--muted);
+      font-size: .88rem;
+      flex-wrap: wrap
+    }
+
+    .foot button {
+      font: inherit;
+      font-size: .88rem;
+      color: var(--muted);
+      background: none;
+      border: 0;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 4px
+    }
+
+    .foot button:hover {
+      color: var(--danger)
+    }
+
+    .note {
+      margin-top: 36px;
+      color: var(--muted);
+      font-size: .82rem
+    }
+
+    @media (max-width:480px) {
+      .add {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .add input {
+        grid-column: 1 / -1
+      }
+
+      li {
+        grid-template-columns: auto minmax(0, 1fr)
+      }
+
+      .acts {
+        grid-column: 2
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="top"><span></span><a class="back" id="back" href="../index.html">← Voltar ao portfólio</a></header>
+    <main>
+      <h1>Tarefas</h1>
+      <p class="sub" id="sub" aria-live="polite"></p>
+
+      <form class="add" id="form" novalidate>
+        <input type="text" id="novo" placeholder="O que precisa ser feito?" aria-label="Nova tarefa" maxlength="120"
+          autocomplete="off">
+        <select id="prio" aria-label="Prioridade">
+          <option value="alta">Alta</option>
+          <option value="media" selected>Média</option>
+          <option value="baixa">Baixa</option>
+        </select>
+        <button class="btn" type="submit">Adicionar</button>
+      </form>
+      <p class="err" id="err" hidden role="alert">Escreva a tarefa antes de adicionar.</p>
+
+      <div class="filters" role="group" aria-label="Filtrar tarefas">
+        <button class="chip" type="button" data-f="todas" aria-pressed="true">Todas</button>
+        <button class="chip" type="button" data-f="ativas" aria-pressed="false">Ativas</button>
+        <button class="chip" type="button" data-f="concluidas" aria-pressed="false">Concluídas</button>
+      </div>
+      <ul id="lista"></ul>
+      <div class="foot"><span id="resumo"></span><button type="button" id="limpar">Limpar concluídas</button></div>
+      <p class="note">As tarefas ficam salvas neste navegador (localStorage). As três primeiras são exemplos e podem ser
+        apagadas.</p>
+    </main>
+  </div>
+  <script>
+    (function () {
+      var KEY = "tarefas-portfolio-v1";
+      var $ = function (id) { return document.getElementById(id) };
+      var tasks = [], filter = "todas", editing = null;
+      var PRIO = { alta: "Alta", media: "Média", baixa: "Baixa" };
+
+      function load() {
+        try { var s = localStorage.getItem(KEY); if (s) { var a = JSON.parse(s); if (Array.isArray(a)) return a } } catch (e) { }
+        return [
+          { id: 1, text: "Revisar o layout no celular", done: false, prio: "alta" },
+          { id: 2, text: "Enviar o portfólio para o GitHub", done: true, prio: "media" },
+          { id: 3, text: "Estudar fetch e async/await", done: false, prio: "baixa" }
+        ];
+      }
+      function save() { try { localStorage.setItem(KEY, JSON.stringify(tasks)) } catch (e) { } }
+      function uid() { return Date.now() + Math.floor(Math.random() * 1000) }
+
+      function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n }
+      function btn(label, cls, act, id) { var b = el("button", "ic " + cls, label); b.type = "button"; b.dataset.act = act; b.dataset.id = id; return b }
+
+      function render() {
+        var ul = $("lista"); ul.textContent = "";
+        var vis = tasks.filter(function (t) { return filter === "todas" || (filter === "ativas" ? !t.done : t.done) });
+        if (!vis.length) {
+          var li = el("li", "empty", filter === "todas" ? "Nenhuma tarefa ainda. Adicione a primeira acima." : "Nenhuma tarefa nesta lista.");
+          li.style.display = "block"; ul.appendChild(li);
+        }
+        vis.forEach(function (t) {
+          var li = el("li", t.done ? "done" : "");
+          var cb = el("input"); cb.type = "checkbox"; cb.checked = t.done; cb.dataset.act = "toggle"; cb.dataset.id = t.id;
+          cb.setAttribute("aria-label", "Concluir: " + t.text);
+          li.appendChild(cb);
+          if (editing === t.id) {
+            var f = el("form", "editrow");
+            var inp = el("input"); inp.type = "text"; inp.value = t.text; inp.maxLength = 120; inp.id = "edit-input"; inp.setAttribute("aria-label", "Editar tarefa");
+            var ok = el("button", "btn", "Salvar"); ok.type = "submit";
+            var no = btn("Cancelar", "", "cancel", t.id);
+            f.append(inp, ok, no);
+            f.addEventListener("submit", function (e) { e.preventDefault(); var v = inp.value.trim(); if (v) { t.text = v; editing = null; save(); render() } });
+            inp.addEventListener("keydown", function (e) { if (e.key === "Escape") { editing = null; render() } });
+            li.appendChild(f);
+          } else {
+            var tx = el("span", "txt", t.text);
+            tx.appendChild(el("span", "tag p-" + t.prio, PRIO[t.prio]));
+            li.appendChild(tx);
+            var acts = el("span", "acts");
+            acts.append(btn("Editar", "", "edit", t.id), btn("Excluir", "del", "del", t.id));
+            li.appendChild(acts);
+          }
+          ul.appendChild(li);
+        });
+        var ativas = tasks.filter(function (t) { return !t.done }).length;
+        var conc = tasks.length - ativas;
+        $("sub").textContent = ativas === 0 && tasks.length ? "Tudo feito por aqui." : ativas + (ativas === 1 ? " tarefa pendente" : " tarefas pendentes");
+        $("resumo").textContent = tasks.length + " no total, " + conc + " concluída" + (conc === 1 ? "" : "s");
+        $("limpar").hidden = conc === 0;
+        document.querySelectorAll(".chip").forEach(function (c) { c.setAttribute("aria-pressed", c.dataset.f === filter) });
+        if (editing !== null) { var i = $("edit-input"); if (i) { i.focus(); i.setSelectionRange(i.value.length, i.value.length) } }
+      }
+
+      $("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var v = $("novo").value.trim();
+        if (!v) { $("err").hidden = false; $("novo").focus(); return }
+        $("err").hidden = true;
+        tasks.unshift({ id: uid(), text: v, done: false, prio: $("prio").value });
+        $("novo").value = ""; save(); render();
+      });
+      $("novo").addEventListener("input", function () { $("err").hidden = true });
+      $("lista").addEventListener("click", function (e) {
+        var b = e.target.closest("[data-act]"); if (!b || b.dataset.act === "toggle") return;
+        var id = +b.dataset.id, a = b.dataset.act;
+        if (a === "edit") { editing = id; render() }
+        else if (a === "cancel") { editing = null; render() }
+        else if (a === "del") { tasks = tasks.filter(function (t) { return t.id !== id }); save(); render() }
+      });
+      $("lista").addEventListener("change", function (e) {
+        var b = e.target; if (b.dataset.act !== "toggle") return;
+        var t = tasks.find(function (x) { return x.id === +b.dataset.id }); if (t) { t.done = b.checked; save(); render() }
+      });
+      document.querySelector(".filters").addEventListener("click", function (e) {
+        var c = e.target.closest(".chip"); if (c) { filter = c.dataset.f; render() }
+      });
+      $("limpar").addEventListener("click", function () { tasks = tasks.filter(function (t) { return !t.done }); save(); render() });
+      $("back").addEventListener("click", function (e) {
+        try { if (history.length > 1 && document.referrer && new URL(document.referrer).origin === location.origin) { e.preventDefault(); history.back() } } catch (err) { }
+      });
+      tasks = load(); render();
+    })();
+  </script>
+</body>
+
+</html>
